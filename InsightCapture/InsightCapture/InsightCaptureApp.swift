@@ -12,6 +12,7 @@ struct InsightCaptureApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            AddLogView()
         }
     }
 }

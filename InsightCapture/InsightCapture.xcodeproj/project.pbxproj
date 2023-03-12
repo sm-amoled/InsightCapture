@@ -11,6 +11,7 @@
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
 		346FAD8E29B718B4004CEE9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8D29B718B4004CEE9B /* Preview Assets.xcassets */; };
+		346FAD9F29B7758C004CEE9B /* AddLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD9E29B7758C004CEE9B /* AddLogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		346FAD8A29B718B4004CEE9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		346FAD8D29B718B4004CEE9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		346FAD9E29B7758C004CEE9B /* AddLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		341581F629BD9CC9006F7CBB /* test_scrape */ = {
+			isa = PBXGroup;
+			children = (
+				346FAD9E29B7758C004CEE9B /* AddLogView.swift */,
+			);
+			path = test_scrape;
+			sourceTree = "<group>";
+		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +63,7 @@
 			children = (
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
+				341581F629BD9CC9006F7CBB /* test_scrape */,
 				346FAD8A29B718B4004CEE9B /* Assets.xcassets */,
 				346FAD8C29B718B4004CEE9B /* Preview Content */,
 			);
@@ -138,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
+				346FAD9F29B7758C004CEE9B /* AddLogView.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
