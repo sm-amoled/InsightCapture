@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		34624EB229BDA59100518FB4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EB129BDA59100518FB4 /* ImagePicker.swift */; };
 		34624EB429BDA5B900518FB4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EB329BDA5B900518FB4 /* ImagePickerView.swift */; };
+		34624EBC29BDB33D00518FB4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EBB29BDB33D00518FB4 /* ShareViewController.swift */; };
+		34624EBF29BDB33D00518FB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34624EBD29BDB33D00518FB4 /* MainInterface.storyboard */; };
+		34624EC329BDB33D00518FB4 /* ShareInsightCapture.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		34624ECB29BE17F500518FB4 /* testv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624ECA29BE17F500518FB4 /* testv.swift */; };
+		34624F0A29C1613000518FB4 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F0929C1613000518FB4 /* UserDefaults+.swift */; };
+		34624F0B29C1613200518FB4 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F0929C1613000518FB4 /* UserDefaults+.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -16,9 +22,41 @@
 		346FAD9F29B7758C004CEE9B /* AddLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD9E29B7758C004CEE9B /* AddLogView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		34624EC129BDB33D00518FB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 346FAD7B29B718B3004CEE9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34624EB829BDB33D00518FB4;
+			remoteInfo = ShareInsightCapture;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		34624EC729BDB33D00518FB4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				34624EC329BDB33D00518FB4 /* ShareInsightCapture.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		34624EB129BDA59100518FB4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		34624EB329BDA5B900518FB4 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareInsightCapture.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		34624EBB29BDB33D00518FB4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		34624EBE29BDB33D00518FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		34624EC029BDB33D00518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34624EC829BDCE3B00518FB4 /* InsightCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InsightCapture.entitlements; sourceTree = "<group>"; };
+		34624EC929BDCE6500518FB4 /* ShareInsightCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareInsightCapture.entitlements; sourceTree = "<group>"; };
+		34624ECA29BE17F500518FB4 /* testv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testv.swift; sourceTree = "<group>"; };
+		34624F0929C1613000518FB4 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		34624EB629BDB33D00518FB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD8029B718B3004CEE9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -44,14 +89,28 @@
 				346FAD9E29B7758C004CEE9B /* AddLogView.swift */,
 				34624EB129BDA59100518FB4 /* ImagePicker.swift */,
 				34624EB329BDA5B900518FB4 /* ImagePickerView.swift */,
+				34624ECA29BE17F500518FB4 /* testv.swift */,
+				34624F0929C1613000518FB4 /* UserDefaults+.swift */,
 			);
 			path = test_scrape;
+			sourceTree = "<group>";
+		};
+		34624EBA29BDB33D00518FB4 /* ShareInsightCapture */ = {
+			isa = PBXGroup;
+			children = (
+				34624EC929BDCE6500518FB4 /* ShareInsightCapture.entitlements */,
+				34624EBB29BDB33D00518FB4 /* ShareViewController.swift */,
+				34624EBD29BDB33D00518FB4 /* MainInterface.storyboard */,
+				34624EC029BDB33D00518FB4 /* Info.plist */,
+			);
+			path = ShareInsightCapture;
 			sourceTree = "<group>";
 		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
 				346FAD8529B718B3004CEE9B /* InsightCapture */,
+				34624EBA29BDB33D00518FB4 /* ShareInsightCapture */,
 				346FAD8429B718B3004CEE9B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				346FAD8329B718B3004CEE9B /* InsightCapture.app */,
+				34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +127,7 @@
 		346FAD8529B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXGroup;
 			children = (
+				34624EC829BDCE3B00518FB4 /* InsightCapture.entitlements */,
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
 				341581F629BD9CC9006F7CBB /* test_scrape */,
@@ -87,6 +148,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		34624EB829BDB33D00518FB4 /* ShareInsightCapture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34624EC429BDB33D00518FB4 /* Build configuration list for PBXNativeTarget "ShareInsightCapture" */;
+			buildPhases = (
+				34624EB529BDB33D00518FB4 /* Sources */,
+				34624EB629BDB33D00518FB4 /* Frameworks */,
+				34624EB729BDB33D00518FB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareInsightCapture;
+			productName = ShareInsightCapture;
+			productReference = 34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		346FAD8229B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 346FAD9129B718B4004CEE9B /* Build configuration list for PBXNativeTarget "InsightCapture" */;
@@ -94,10 +172,12 @@
 				346FAD7F29B718B3004CEE9B /* Sources */,
 				346FAD8029B718B3004CEE9B /* Frameworks */,
 				346FAD8129B718B3004CEE9B /* Resources */,
+				34624EC729BDB33D00518FB4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				34624EC229BDB33D00518FB4 /* PBXTargetDependency */,
 			);
 			name = InsightCapture;
 			productName = InsightCapture;
@@ -114,6 +194,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					34624EB829BDB33D00518FB4 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					346FAD8229B718B3004CEE9B = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -133,11 +216,20 @@
 			projectRoot = "";
 			targets = (
 				346FAD8229B718B3004CEE9B /* InsightCapture */,
+				34624EB829BDB33D00518FB4 /* ShareInsightCapture */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		34624EB729BDB33D00518FB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34624EBF29BDB33D00518FB4 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD8129B718B3004CEE9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,12 +242,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		34624EB529BDB33D00518FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34624F0B29C1613200518FB4 /* UserDefaults+.swift in Sources */,
+				34624EBC29BDB33D00518FB4 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD7F29B718B3004CEE9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
 				34624EB229BDA59100518FB4 /* ImagePicker.swift in Sources */,
+				34624F0A29C1613000518FB4 /* UserDefaults+.swift in Sources */,
+				34624ECB29BE17F500518FB4 /* testv.swift in Sources */,
 				346FAD9F29B7758C004CEE9B /* AddLogView.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
 				34624EB429BDA5B900518FB4 /* ImagePickerView.swift in Sources */,
@@ -164,7 +267,78 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		34624EC229BDB33D00518FB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34624EB829BDB33D00518FB4 /* ShareInsightCapture */;
+			targetProxy = 34624EC129BDB33D00518FB4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34624EBD29BDB33D00518FB4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34624EBE29BDB33D00518FB4 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		34624EC529BDB33D00518FB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareInsightCapture/ShareInsightCapture.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareInsightCapture/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareInsightCapture;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.led.InsightCapture.ShareInsightCapture;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34624EC629BDB33D00518FB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareInsightCapture/ShareInsightCapture.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareInsightCapture/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareInsightCapture;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.led.InsightCapture.ShareInsightCapture;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		346FAD8F29B718B4004CEE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -215,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -269,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,8 +456,10 @@
 		346FAD9229B718B4004CEE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightCapture/InsightCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightCapture/Preview Content\"";
@@ -311,8 +487,10 @@
 		346FAD9329B718B4004CEE9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightCapture/InsightCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightCapture/Preview Content\"";
@@ -340,6 +518,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		34624EC429BDB33D00518FB4 /* Build configuration list for PBXNativeTarget "ShareInsightCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34624EC529BDB33D00518FB4 /* Debug */,
+				34624EC629BDB33D00518FB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		346FAD7E29B718B3004CEE9B /* Build configuration list for PBXProject "InsightCapture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
