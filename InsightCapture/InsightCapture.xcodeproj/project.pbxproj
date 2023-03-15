@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34624F1029C1C11400518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F0F29C1C11400518FB4 /* SnapKit */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34624F1129C1C12900518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,17 +28,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34624F1029C1C11400518FB4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34624F1229C1C12E00518FB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
 				346FAD8529B718B3004CEE9B /* InsightCapture */,
 				346FAD8429B718B3004CEE9B /* Products */,
+				34624F1229C1C12E00518FB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,6 +62,7 @@
 		346FAD8529B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXGroup;
 			children = (
+				34624F1129C1C12900518FB4 /* Info.plist */,
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
 				346FAD8A29B718B4004CEE9B /* Assets.xcassets */,
@@ -83,6 +95,9 @@
 			dependencies = (
 			);
 			name = InsightCapture;
+			packageProductDependencies = (
+				34624F0F29C1C11400518FB4 /* SnapKit */,
+			);
 			productName = InsightCapture;
 			productReference = 346FAD8329B718B3004CEE9B /* InsightCapture.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 346FAD7A29B718B3004CEE9B;
+			packageReferences = (
+				34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 346FAD8429B718B3004CEE9B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -270,11 +288,13 @@
 				DEVELOPMENT_TEAM = JPL38XBHJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InsightCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,11 +319,13 @@
 				DEVELOPMENT_TEAM = JPL38XBHJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InsightCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -339,6 +361,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34624F0F29C1C11400518FB4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 346FAD7B29B718B3004CEE9B /* Project object */;
 }
