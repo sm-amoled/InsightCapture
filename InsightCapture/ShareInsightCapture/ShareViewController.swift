@@ -10,79 +10,175 @@ import Social
 import MobileCoreServices
 import UniformTypeIdentifiers
 
+import SnapKit
 
-class ShareViewController: SLComposeServiceViewController {
+
+class ShareViewController: UIViewController {
     
-//    override func viewDidLoad() {
-//        self.view.backgroundColor = .systemGray6
-//
-//    }
+    var isShowingSource: Bool = true
+    var thumbnailImage: UIImage?
     
-    let appGroupStore = AppGroupStore(appGroupID: "group.com.led.InsightCapture")
+    // MARK: UI Components
     
-    override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
-        // True/False를 통해 share 기능을 통해 앱을 선택했을 때, 입력 값에 따라 앱으로 Post 가능 여부를 설정할 수 있음
-        // 입력 값은 contentText 로 접근이 가능 (SLComposeSErviceViewController을 통해 접근 가능)
-        return true
-    }
+    lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.layer.cornerRadius = 15
+        return view
+    }()
     
-    override func didSelectPost() {
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
-        // Post 버튼을 눌렀을 때 실행되는 함수
+    lazy var sourceView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    lazy var sourceTitleBar: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var sourceTitle: UILabel = {
+        let label = UILabel()
+        label.text = "출처"
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    lazy var sourceToggleButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("토글", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
+        return button
+    }()
+    
+    // MARK: Image UI
+    
+    lazy var imageThumbnailView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    
+    override func viewDidLoad() {
+        //        self.view.backgroundColor = .systemGray6
         
-//        UserDefaults.shared.changeValue(to: "colacola")
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.title = "Hello, World!"
         
-        appGroupStore.setSharedURL(urlString: "hello, cola")
-//
+        setLayout()
+        
+        // MARK: Data 가져오기
+        
         let extensionItems = extensionContext?.inputItems as! [NSExtensionItem]
-
-        var image: UIImage?
-        var text: String?
-
-        for extensionItem in extensionItems {
-            if let itemProviders = extensionItem.attachments {
+        
+        // 가져온 데이터 중에서
+        for items in extensionItems {
+            // NSItemProvider 배열에 담긴 여러 미디어 데이터 중에서
+            if let itemProviders = items.attachments {
+                // 미디어 데이터를 하나 확인해서
                 for itemProvider in itemProviders {
-                    // 해당 객체가 있는지 식별
+                    // 이미지 파일에 대한 확인
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
-                        itemProvider.loadItem(forTypeIdentifier: UTType.image.identifier, options: nil, completionHandler: { result, error in
-
-                            if result is UIImage {
-                                image = result as? UIImage
-                            }
-                            else if result is URL {
-                                let data = try? Data(contentsOf: result as! URL)
-                                image = UIImage(data: data!)!
-                            }
-                            else if result is Data {
-                                image = UIImage(data: result as! Data)!
-                            }
+                        itemProvider.loadItem(forTypeIdentifier: UTType.image.identifier, options: nil) { (data, error) in
                             
-                            self.appGroupStore.setSharedImage(image: image!)
-                        })
+                            if let data = data {
+                                self.thumbnailImage = UIImage(data: NSData(contentsOf: (data as! NSURL) as URL)! as Data)
+
+                                DispatchQueue.main.async {
+                                    self.setSourceImageLayout()
+                                }
+                            }
+                        }
+                    }
+                    
+                    // URL 타입에 대한 확인
+                    if itemProvider.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+                        
                     }
                 }
             }
         }
-        
-        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
     
-    override func didSelectCancel() {
-        // Cancel 버튼을 눌렀을 때 실행되는 함수
+    let appGroupStore = AppGroupStore(appGroupID: "group.com.led.InsightCapture")
+    
+}
 
+extension ShareViewController {
+    func setLayout() {
+        self.view.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints {
+            $0.width.height.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(30)
+        }
+        
+        self.backgroundView.addSubview(sourceView)
+        setSourceViewLayout()
     }
     
-    override func configurationItems() -> [Any]! {
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        // Sheet 하단에 설정할 수 있는 값들을 추가할 수 있음
-        //        let item = SLComposeSheetConfigurationItem()!
-        //        item.title = "제목"
-        //        item.tapHandler = { /* tap 했을 때의 action */}
-        //        item.value = "선택"
-        //        return [item]
+    func setSourceViewLayout() {
+        sourceView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().offset(-16)
+            $0.top.equalToSuperview().offset(30)
+            $0.height.equalTo(180)
+        }
         
-        return []
+        setSourceBarLayout()
+        setSourceImageLayout()
+    }
+    
+    func setSourceBarLayout() {
+        self.sourceView.addSubview(sourceTitleBar)
+        sourceTitleBar.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+            $0.height.equalTo(40)
+        }
+        
+        self.sourceTitleBar.addSubview(sourceTitle)
+        sourceTitle.snp.makeConstraints {
+            $0.top.left.equalToSuperview()
+        }
+        
+        self.sourceTitleBar.addSubview(sourceToggleButton)
+        sourceToggleButton.snp.makeConstraints {
+            $0.top.right.equalToSuperview()
+        }
+    }
+    
+    func setSourceImageLayout() {
+        let imageView = UIImageView(image: thumbnailImage)
+        
+        sourceView.addSubview(imageView)
+        imageView.snp.makeConstraints {
+            $0.height.equalTo(90)
+            $0.width.equalTo(120)
+            $0.left.equalToSuperview()
+            $0.top.equalTo(sourceTitleBar.snp.bottom)
+        }
+    }
+}
+
+extension ShareViewController {
+    @objc
+    func tapToggleButton() {
+        print("toggled")
+        isShowingSource.toggle()
+        
+        self.sourceView.snp.updateConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().offset(-16)
+            $0.top.equalToSuperview().offset(30)
+            $0.height.equalTo(self.isShowingSource ? 180 : 40)
+        }
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
     }
 }

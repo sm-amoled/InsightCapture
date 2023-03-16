@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34624F1029C1C11400518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F0F29C1C11400518FB4 /* SnapKit */; };
 		34624EB229BDA59100518FB4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EB129BDA59100518FB4 /* ImagePicker.swift */; };
 		34624EB429BDA5B900518FB4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EB329BDA5B900518FB4 /* ImagePickerView.swift */; };
 		34624EBC29BDB33D00518FB4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624EBB29BDB33D00518FB4 /* ShareViewController.swift */; };
@@ -16,6 +15,8 @@
 		34624ECB29BE17F500518FB4 /* testv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624ECA29BE17F500518FB4 /* testv.swift */; };
 		34624F0A29C1613000518FB4 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F0929C1613000518FB4 /* UserDefaults+.swift */; };
 		34624F0B29C1613200518FB4 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F0929C1613000518FB4 /* UserDefaults+.swift */; };
+		34624F1029C1C11400518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F0F29C1C11400518FB4 /* SnapKit */; };
+		34624F1429C2C2AC00518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F1329C2C2AC00518FB4 /* SnapKit */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -48,7 +49,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		34624F1129C1C12900518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		34624EB129BDA59100518FB4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		34624EB329BDA5B900518FB4 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareInsightCapture.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +59,7 @@
 		34624EC929BDCE6500518FB4 /* ShareInsightCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareInsightCapture.entitlements; sourceTree = "<group>"; };
 		34624ECA29BE17F500518FB4 /* testv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testv.swift; sourceTree = "<group>"; };
 		34624F0929C1613000518FB4 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		34624F1129C1C12900518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34624F1429C2C2AC00518FB4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,13 +88,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34624F1229C1C12E00518FB4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		341581F629BD9CC9006F7CBB /* test_scrape */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +109,13 @@
 				34624EC029BDB33D00518FB4 /* Info.plist */,
 			);
 			path = ShareInsightCapture;
+			sourceTree = "<group>";
+		};
+		34624F1229C1C12E00518FB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		346FAD7A29B718B3004CEE9B = {
@@ -173,6 +175,9 @@
 			dependencies = (
 			);
 			name = ShareInsightCapture;
+			packageProductDependencies = (
+				34624F1329C2C2AC00518FB4 /* SnapKit */,
+			);
 			productName = ShareInsightCapture;
 			productReference = 34624EB929BDB33D00518FB4 /* ShareInsightCapture.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -582,6 +587,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		34624F0F29C1C11400518FB4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		34624F1329C2C2AC00518FB4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
