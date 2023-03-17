@@ -12,7 +12,6 @@ import UniformTypeIdentifiers
 
 import SnapKit
 
-
 class ShareViewController: UIViewController {
     
     var isShowingSource: Bool = true
@@ -29,6 +28,10 @@ class ShareViewController: UIViewController {
     
     lazy var sourceView: UIView = {
         let view = UIView()
+//        view.layer.borderWidth = 1
+//        view.layer.borderColor = CGColor.init(gray: 0.3, alpha: 1)
+//        view.backgroundColor = .white
+//        view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
     }()
@@ -49,23 +52,40 @@ class ShareViewController: UIViewController {
         let button = UIButton()
         button.setTitle("토글", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapSaveButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var thumbnailTitleLabelView: UILabel = {
+        let label = UILabel()
+        label.text = "타이틀"
+        return label
+    }()
+    
+    lazy var thumbnailDescriptionLabelView: UILabel = {
+        let label = UILabel()
+        label.text = "설명"
+        return label
+    }()
+    
+    lazy var insightTextField: UITextField = {
+        let field = UITextField()
+        field.backgroundColor = .systemGray5
+        field.textAlignment = .left
+        field.contentVerticalAlignment = .top
+        return field
     }()
     
     // MARK: Image UI
     
-    lazy var imageThumbnailView: UIView = {
-        let view = UIView()
+    lazy var thumbnailImageView: UIImageView = {
+        let view = UIImageView()
         return view
     }()
     
     
     override func viewDidLoad() {
-        //        self.view.backgroundColor = .systemGray6
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.title = "Hello, World!"
         
         setLayout()
         
@@ -87,7 +107,7 @@ class ShareViewController: UIViewController {
                                 self.thumbnailImage = UIImage(data: NSData(contentsOf: (data as! NSURL) as URL)! as Data)
 
                                 DispatchQueue.main.async {
-                                    self.setSourceImageLayout()
+                                    self.setSourceThumbnailLayout()
                                 }
                             }
                         }
@@ -108,6 +128,7 @@ class ShareViewController: UIViewController {
 
 extension ShareViewController {
     func setLayout() {
+        
         self.view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
             $0.width.height.equalToSuperview()
@@ -117,6 +138,13 @@ extension ShareViewController {
         
         self.backgroundView.addSubview(sourceView)
         setSourceViewLayout()
+        
+        self.view.addSubview(insightTextField)
+        insightTextField.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(sourceView.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview().offset(-16)
+        }
     }
     
     func setSourceViewLayout() {
@@ -124,11 +152,11 @@ extension ShareViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().offset(-16)
             $0.top.equalToSuperview().offset(30)
-            $0.height.equalTo(180)
+            $0.height.equalTo(140)
         }
         
         setSourceBarLayout()
-        setSourceImageLayout()
+        setSourceThumbnailLayout()
     }
     
     func setSourceBarLayout() {
@@ -149,36 +177,60 @@ extension ShareViewController {
         }
     }
     
-    func setSourceImageLayout() {
-        let imageView = UIImageView(image: thumbnailImage)
+    func setSourceThumbnailLayout() {
+        thumbnailImageView.image = thumbnailImage
         
-        sourceView.addSubview(imageView)
-        imageView.snp.makeConstraints {
+        sourceView.addSubview(thumbnailImageView)
+        thumbnailImageView.snp.makeConstraints {
             $0.height.equalTo(90)
             $0.width.equalTo(120)
             $0.left.equalToSuperview()
             $0.top.equalTo(sourceTitleBar.snp.bottom)
         }
+        
+        sourceView.addSubview(thumbnailTitleLabelView)
+        thumbnailTitleLabelView.snp.makeConstraints {
+            $0.left.equalTo(thumbnailImageView.snp.right)
+            $0.top.equalTo(thumbnailImageView)
+            $0.right.equalTo(sourceView)
+            $0.height.equalTo(40)
+        }
+        
+        sourceView.addSubview(thumbnailDescriptionLabelView)
+        thumbnailDescriptionLabelView.snp.makeConstraints {
+            $0.left.equalTo(thumbnailImageView.snp.right)
+            $0.top.equalTo(thumbnailTitleLabelView.snp.bottom)
+            $0.right.equalTo(sourceView)
+            $0.height.equalTo(40)
+        }
     }
 }
 
 extension ShareViewController {
+//    @objc
+//    func tapToggleButton() {
+//        print("toggled")
+//        isShowingSource.toggle()
+//
+//        self.sourceView.snp.updateConstraints {
+//            $0.centerX.equalToSuperview()
+//            $0.width.equalToSuperview().offset(-16)
+//            $0.top.equalToSuperview().offset(30)
+//            $0.height.equalTo(self.isShowingSource ? 180 : 40)
+//        }
+//
+//        DispatchQueue.main.async {
+//            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        }
+//    }
+    
     @objc
-    func tapToggleButton() {
-        print("toggled")
-        isShowingSource.toggle()
+    func tapSaveButton() {
+        print("save")
+        print(insightTextField.text)
         
-        self.sourceView.snp.updateConstraints {
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().offset(-16)
-            $0.top.equalToSuperview().offset(30)
-            $0.height.equalTo(self.isShowingSource ? 180 : 40)
-        }
-        
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
+        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 }
