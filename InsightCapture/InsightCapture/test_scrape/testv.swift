@@ -9,23 +9,27 @@ import SwiftUI
 
 struct testv: View {
     
-    @StateObject public var appGroupStore: AppGroupStore = AppGroupStore(appGroupID: "group.com.led.insightcapture")
-    
-    @State private var image: UIImage?
-    @State private var url: String?
+    @State var insightList: [InsightData] = []
     
     var body: some View {
         VStack {
-            Text(((appGroupStore.getSharedURL() == nil ? "not" : appGroupStore.getSharedURL())!))
-            
-            if appGroupStore.getSharedImage() != nil {
-                Image(uiImage: appGroupStore.getSharedImage()!)
-                    .resizable()
-                    .frame(width: 150, height: 100)
+            ForEach(insightList) { data in
+                HStack {
+                    if let imageData = data.thumbnailImage {
+                        Image(uiImage: UIImage(data: data.thumbnailImage!)!)
+                            .resizable()
+                            .frame(width: 60, height:40)
+                    } else {
+                        Text(data.url ?? "")
+                    }
+
+                    Text(data.insightString ?? "")
+                }
+                .frame(maxWidth: .infinity)
             }
         }
         .onAppear {
-            print(appGroupStore.getSharedImage())
+            insightList = CoreDataManager.shared.getAllInsights()
         }
     }
 }

@@ -28,10 +28,6 @@ class ShareViewController: UIViewController {
     
     lazy var sourceView: UIView = {
         let view = UIView()
-//        view.layer.borderWidth = 1
-//        view.layer.borderColor = CGColor.init(gray: 0.3, alpha: 1)
-//        view.backgroundColor = .white
-//        view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
     }()
@@ -86,8 +82,8 @@ class ShareViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
         setLayout()
+        print("DEBUG : ", CoreDataManager.shared.getAllInsights())
         
         // MARK: Data 가져오기
         
@@ -106,6 +102,8 @@ class ShareViewController: UIViewController {
                             if let data = data {
                                 self.thumbnailImage = UIImage(data: NSData(contentsOf: (data as! NSURL) as URL)! as Data)
 
+                                
+                                
                                 DispatchQueue.main.async {
                                     self.setSourceThumbnailLayout()
                                 }
@@ -122,7 +120,6 @@ class ShareViewController: UIViewController {
         }
     }
     
-    let appGroupStore = AppGroupStore(appGroupID: "group.com.led.InsightCapture")
     
 }
 
@@ -228,9 +225,12 @@ extension ShareViewController {
     
     @objc
     func tapSaveButton() {
-        print("save")
-        print(insightTextField.text)
         
+        let insight = Insight(insightString: self.insightTextField.text ?? "",
+                              thumbnailImage: self.thumbnailImage)
+        
+        CoreDataManager.shared.createInsight(insight: insight)
+                
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 }

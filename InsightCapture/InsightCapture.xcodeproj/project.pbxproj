@@ -17,6 +17,16 @@
 		34624F0B29C1613200518FB4 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F0929C1613000518FB4 /* UserDefaults+.swift */; };
 		34624F1029C1C11400518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F0F29C1C11400518FB4 /* SnapKit */; };
 		34624F1429C2C2AC00518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F1329C2C2AC00518FB4 /* SnapKit */; };
+		34624F1729C4507700518FB4 /* InsightDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1529C4507700518FB4 /* InsightDataModel.xcdatamodeld */; };
+		34624F1829C4507700518FB4 /* InsightDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1529C4507700518FB4 /* InsightDataModel.xcdatamodeld */; };
+		34624F1B29C4519B00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1A29C4519B00518FB4 /* CoreDataManager.swift */; };
+		34624F1C29C4519B00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1A29C4519B00518FB4 /* CoreDataManager.swift */; };
+		34624F1E29C4524800518FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1D29C4524800518FB4 /* AppDelegate.swift */; };
+		34624F1F29C4524800518FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F1D29C4524800518FB4 /* AppDelegate.swift */; };
+		34624F2129C45A6100518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F2029C45A6100518FB4 /* Insight.swift */; };
+		34624F2229C45A6100518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F2029C45A6100518FB4 /* Insight.swift */; };
+		34624F2529C882E100518FB4 /* InsightData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F2329C882E100518FB4 /* InsightData+CoreDataClass.swift */; };
+		34624F2629C882E100518FB4 /* InsightData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F2329C882E100518FB4 /* InsightData+CoreDataClass.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -60,6 +70,11 @@
 		34624ECA29BE17F500518FB4 /* testv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testv.swift; sourceTree = "<group>"; };
 		34624F0929C1613000518FB4 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		34624F1129C1C12900518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		34624F1629C4507700518FB4 /* InsightDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InsightDataModel.xcdatamodel; sourceTree = "<group>"; };
+		34624F1A29C4519B00518FB4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		34624F1D29C4524800518FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		34624F2029C45A6100518FB4 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
+		34624F2329C882E100518FB4 /* InsightData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsightData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,9 +133,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		34624F1929C4518B00518FB4 /* test_dataManager */ = {
+			isa = PBXGroup;
+			children = (
+				34624F2329C882E100518FB4 /* InsightData+CoreDataClass.swift */,
+				34624F1A29C4519B00518FB4 /* CoreDataManager.swift */,
+				34624F2029C45A6100518FB4 /* Insight.swift */,
+				34624F1D29C4524800518FB4 /* AppDelegate.swift */,
+			);
+			path = test_dataManager;
+			sourceTree = "<group>";
+		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
+				34624F1529C4507700518FB4 /* InsightDataModel.xcdatamodeld */,
 				346FAD8529B718B3004CEE9B /* InsightCapture */,
 				34624EBA29BDB33D00518FB4 /* ShareInsightCapture */,
 				346FAD8429B718B3004CEE9B /* Products */,
@@ -145,6 +172,7 @@
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
 				341581F629BD9CC9006F7CBB /* test_scrape */,
+				34624F1929C4518B00518FB4 /* test_dataManager */,
 				346FAD8A29B718B4004CEE9B /* Assets.xcassets */,
 				346FAD8C29B718B4004CEE9B /* Preview Content */,
 			);
@@ -270,7 +298,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				34624F0B29C1613200518FB4 /* UserDefaults+.swift in Sources */,
+				34624F1C29C4519B00518FB4 /* CoreDataManager.swift in Sources */,
 				34624EBC29BDB33D00518FB4 /* ShareViewController.swift in Sources */,
+				34624F1F29C4524800518FB4 /* AppDelegate.swift in Sources */,
+				34624F2629C882E100518FB4 /* InsightData+CoreDataClass.swift in Sources */,
+				34624F2229C45A6100518FB4 /* Insight.swift in Sources */,
+				34624F1829C4507700518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +316,12 @@
 				34624F0A29C1613000518FB4 /* UserDefaults+.swift in Sources */,
 				34624ECB29BE17F500518FB4 /* testv.swift in Sources */,
 				346FAD9F29B7758C004CEE9B /* AddLogView.swift in Sources */,
+				34624F2129C45A6100518FB4 /* Insight.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
+				34624F1729C4507700518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
+				34624F1B29C4519B00518FB4 /* CoreDataManager.swift in Sources */,
+				34624F1E29C4524800518FB4 /* AppDelegate.swift in Sources */,
+				34624F2529C882E100518FB4 /* InsightData+CoreDataClass.swift in Sources */,
 				34624EB429BDA5B900518FB4 /* ImagePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,6 +635,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		34624F1529C4507700518FB4 /* InsightDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				34624F1629C4507700518FB4 /* InsightDataModel.xcdatamodel */,
+			);
+			currentVersion = 34624F1629C4507700518FB4 /* InsightDataModel.xcdatamodel */;
+			path = InsightDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 346FAD7B29B718B3004CEE9B /* Project object */;
 }
