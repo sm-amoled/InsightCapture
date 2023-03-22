@@ -12,6 +12,8 @@
 		34624F3329CAE57D00518FB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34624F3129CAE57D00518FB4 /* MainInterface.storyboard */; };
 		34624F3729CAE57D00518FB4 /* share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 34624F2D29CAE57D00518FB4 /* share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		34624F3D29CAE61000518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F3C29CAE61000518FB4 /* SnapKit */; };
+		34624F4029CB300A00518FB4 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F3F29CB300A00518FB4 /* UIColor+.swift */; };
+		34624F4129CB302F00518FB4 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F3F29CB300A00518FB4 /* UIColor+.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -48,6 +50,7 @@
 		34624F2F29CAE57D00518FB4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		34624F3229CAE57D00518FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		34624F3429CAE57D00518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34624F3F29CB300A00518FB4 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +95,14 @@
 			path = share;
 			sourceTree = "<group>";
 		};
+		34624F3E29CB2FFB00518FB4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				34624F3F29CB300A00518FB4 /* UIColor+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +125,7 @@
 		346FAD8529B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXGroup;
 			children = (
+				34624F3E29CB2FFB00518FB4 /* Extensions */,
 				34624F1129C1C12900518FB4 /* Info.plist */,
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
@@ -242,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */,
+				34624F4129CB302F00518FB4 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +264,7 @@
 			files = (
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
+				34624F4029CB300A00518FB4 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,5 @@
 import UIKit
+import LinkPresentation
 import Social
 import MobileCoreServices
 import UniformTypeIdentifiers
@@ -7,8 +8,21 @@ import SnapKit
 
 class ShareViewController: UIViewController {
     
-    var isShowingSource: Bool = true
-    var thumbnailImage: UIImage?
+    // MARK: Properties
+    
+    var urlThumbnailImage: UIImage?
+    var urlTitle: String?
+    var urlDescription: String?
+    
+    var isShowingSourceViewIndicator: Bool = false {
+        willSet {
+            if newValue {
+                showSourceViewIndicator()
+            } else {
+                deleteSourceViewIndicator()
+            }
+        }
+    }
     
     // MARK: UI Components
     
@@ -50,6 +64,29 @@ class ShareViewController: UIViewController {
         return view
     }()
     
+    lazy var sourceTitleView: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 15, weight: .bold)
+        view.numberOfLines = 2
+        return view
+    }()
+    
+    lazy var sourceDescriptionView: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 12, weight: .light)
+        view.textColor = UIColor(hex: "#535353")
+        view.numberOfLines = 1
+        return view
+    }()
+    
+    lazy var sourceIndicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView()
+        indicatorView.style = .medium
+        return indicatorView
+    }()
+    
+    
+    
     lazy var textFieldView: UIView = {
         let view = UIView()
         return view
@@ -88,7 +125,8 @@ class ShareViewController: UIViewController {
         // MARK: Data 가져오기
         
         let extensionItems = extensionContext?.inputItems as! [NSExtensionItem]
-        
+        isShowingSourceViewIndicator = true
+
         // 가져온 데이터 중에서
         for items in extensionItems {
             // NSItemProvider 배열에 담긴 여러 미디어 데이터 중에서
@@ -98,28 +136,34 @@ class ShareViewController: UIViewController {
                     
                     // 만약 이미지 파일이라면
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+                        self.setImageSourceLayout()
+
                         itemProvider.loadItem(forTypeIdentifier: UTType.image.identifier, options: nil) { (data, error) in
-                            
                             if let data = data {
                                 let image = UIImage(data: NSData(contentsOf: (data as! NSURL) as URL)! as Data)
                                 
                                 DispatchQueue.main.async {
                                     self.sourceImageView.image = image
+                                    self.isShowingSourceViewIndicator = false
                                 }
                             }
                         }
                     }
                     
                     // 만약 URL 타입이라면
-                    if itemProvider.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
-                        
+                    if itemProvider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+                        self.setUrlSourceLayout()
+
+                        itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
+
+                            self.fetchData(from: url as! URL)
+                            self.isShowingSourceViewIndicator = false
+                        }
                     }
                 }
             }
         }
     }
-    
-    
 }
 
 extension ShareViewController {
@@ -143,7 +187,7 @@ extension ShareViewController {
         }
         
         self.contentView.addSubview(sourceView)
-        setImageSourceLayout()
+        // sourceView의 layout은 Input Type에 따라 달라짐.
         
         self.contentView.addSubview(textFieldView)
         setTextFieldLayout()
@@ -160,12 +204,56 @@ extension ShareViewController {
         sourceImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        self.sourceView.addSubview(sourceIndicatorView)
+        sourceIndicatorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func setUrlSourceLayout() {
+        self.sourceView.backgroundColor = UIColor.systemGray5
+        self.sourceView.layer.cornerRadius = 10
+        
+        sourceView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().offset(12)
+            $0.height.equalTo(100)
+        }
+        
+        self.sourceView.addSubview(sourceImageView)
+        sourceImageView.snp.makeConstraints {
+            $0.verticalEdges.left.equalToSuperview().inset(8)
+            $0.width.equalTo(sourceImageView.snp.height).multipliedBy(16.0/9.0)
+        }
+        
+        self.sourceView.addSubview(sourceTitleView)
+        sourceTitleView.snp.makeConstraints {
+            $0.left.equalTo(sourceImageView.snp.right).offset(8)
+            $0.right.equalToSuperview().inset(8)
+            $0.top.equalToSuperview().inset(12)
+            $0.height.equalTo(40)
+        }
+        
+        self.sourceView.addSubview(sourceDescriptionView)
+        sourceDescriptionView.snp.makeConstraints {
+            $0.left.equalTo(sourceImageView.snp.right).offset(8)
+            $0.right.equalToSuperview().inset(8)
+            $0.top.equalTo(sourceTitleView.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.height.equalTo(20)
+        }
+        
+        self.sourceView.addSubview(sourceIndicatorView)
+        sourceIndicatorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func setTextFieldLayout() {
         textFieldView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(sourceView.snp.bottom)
+            $0.top.equalTo(sourceView.snp.bottom).offset(16)
             $0.bottom.equalToSuperview()
         }
         
@@ -189,12 +277,44 @@ extension ShareViewController {
             $0.top.equalTo(divider.snp.bottom).offset(8)
             $0.bottom.equalToSuperview()
         }
-        
+    }
+    
+    func showSourceViewIndicator() {
+        sourceIndicatorView.startAnimating()
+    }
+    
+    func deleteSourceViewIndicator() {
+        sourceIndicatorView.stopAnimating()
     }
 }
 
 extension ShareViewController {
-    
+    func fetchData(from url: URL) {
+        let provider = LPMetadataProvider()
+        provider.startFetchingMetadata(for: url) { metaData, error in
+            if let error = error { return }
+            guard let data = metaData else { return }
+            
+            self.urlTitle = data.title
+            self.urlDescription = data.value(forKey: "summary") as! String
+            
+            data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
+                guard error == nil else { return }
+                
+                if let image = image as? UIImage {
+                    // do something with image
+                    self.urlThumbnailImage = image
+                    DispatchQueue.main.async {
+                        self.sourceTitleView.text = self.urlTitle
+                        self.sourceDescriptionView.text = self.urlDescription
+                        self.sourceImageView.image = self.urlThumbnailImage
+                    }
+                } else {
+                    print("no image available")
+                }
+            })
+        }
+    }
 }
 
 extension ShareViewController: UITextViewDelegate {
