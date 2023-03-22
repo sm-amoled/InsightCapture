@@ -8,14 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		34624F1029C1C11400518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F0F29C1C11400518FB4 /* SnapKit */; };
+		34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F2F29CAE57D00518FB4 /* ShareViewController.swift */; };
+		34624F3329CAE57D00518FB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34624F3129CAE57D00518FB4 /* MainInterface.storyboard */; };
+		34624F3729CAE57D00518FB4 /* share.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 34624F2D29CAE57D00518FB4 /* share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		34624F3D29CAE61000518FB4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 34624F3C29CAE61000518FB4 /* SnapKit */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
 		346FAD8E29B718B4004CEE9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8D29B718B4004CEE9B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		34624F3529CAE57D00518FB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 346FAD7B29B718B3004CEE9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34624F2C29CAE57D00518FB4;
+			remoteInfo = share;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		34624F3829CAE57D00518FB4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				34624F3729CAE57D00518FB4 /* share.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		34624F1129C1C12900518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		34624F2D29CAE57D00518FB4 /* share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		34624F2F29CAE57D00518FB4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		34624F3229CAE57D00518FB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		34624F3429CAE57D00518FB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -24,6 +56,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		34624F2A29CAE57D00518FB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34624F3D29CAE61000518FB4 /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD8029B718B3004CEE9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +82,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		34624F2E29CAE57D00518FB4 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				34624F2F29CAE57D00518FB4 /* ShareViewController.swift */,
+				34624F3129CAE57D00518FB4 /* MainInterface.storyboard */,
+				34624F3429CAE57D00518FB4 /* Info.plist */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
 		346FAD7A29B718B3004CEE9B = {
 			isa = PBXGroup;
 			children = (
 				346FAD8529B718B3004CEE9B /* InsightCapture */,
+				34624F2E29CAE57D00518FB4 /* share */,
 				346FAD8429B718B3004CEE9B /* Products */,
 				34624F1229C1C12E00518FB4 /* Frameworks */,
 			);
@@ -55,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				346FAD8329B718B3004CEE9B /* InsightCapture.app */,
+				34624F2D29CAE57D00518FB4 /* share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +134,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		34624F2C29CAE57D00518FB4 /* share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34624F3B29CAE57D00518FB4 /* Build configuration list for PBXNativeTarget "share" */;
+			buildPhases = (
+				34624F2929CAE57D00518FB4 /* Sources */,
+				34624F2A29CAE57D00518FB4 /* Frameworks */,
+				34624F2B29CAE57D00518FB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = share;
+			packageProductDependencies = (
+				34624F3C29CAE61000518FB4 /* SnapKit */,
+			);
+			productName = share;
+			productReference = 34624F2D29CAE57D00518FB4 /* share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		346FAD8229B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 346FAD9129B718B4004CEE9B /* Build configuration list for PBXNativeTarget "InsightCapture" */;
@@ -89,10 +161,12 @@
 				346FAD7F29B718B3004CEE9B /* Sources */,
 				346FAD8029B718B3004CEE9B /* Frameworks */,
 				346FAD8129B718B3004CEE9B /* Resources */,
+				34624F3829CAE57D00518FB4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				34624F3629CAE57D00518FB4 /* PBXTargetDependency */,
 			);
 			name = InsightCapture;
 			packageProductDependencies = (
@@ -112,6 +186,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					34624F2C29CAE57D00518FB4 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					346FAD8229B718B3004CEE9B = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -134,11 +211,20 @@
 			projectRoot = "";
 			targets = (
 				346FAD8229B718B3004CEE9B /* InsightCapture */,
+				34624F2C29CAE57D00518FB4 /* share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		34624F2B29CAE57D00518FB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34624F3329CAE57D00518FB4 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD8129B718B3004CEE9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +237,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		34624F2929CAE57D00518FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		346FAD7F29B718B3004CEE9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,7 +256,76 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		34624F3629CAE57D00518FB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34624F2C29CAE57D00518FB4 /* share */;
+			targetProxy = 34624F3529CAE57D00518FB4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34624F3129CAE57D00518FB4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34624F3229CAE57D00518FB4 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		34624F3929CAE57D00518FB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.led.InsightCapture.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34624F3A29CAE57D00518FB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JPL38XBHJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = share/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = share;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.led.InsightCapture.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		346FAD8F29B718B4004CEE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -280,6 +443,7 @@
 		346FAD9229B718B4004CEE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +475,7 @@
 		346FAD9329B718B4004CEE9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +507,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		34624F3B29CAE57D00518FB4 /* Build configuration list for PBXNativeTarget "share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34624F3929CAE57D00518FB4 /* Debug */,
+				34624F3A29CAE57D00518FB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		346FAD7E29B718B3004CEE9B /* Build configuration list for PBXProject "InsightCapture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -375,6 +549,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		34624F0F29C1C11400518FB4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		34624F3C29CAE61000518FB4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
