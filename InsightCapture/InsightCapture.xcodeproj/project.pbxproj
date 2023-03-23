@@ -18,6 +18,8 @@
 		34624F4629CCA10D00518FB4 /* InsightDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4329CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld */; };
 		34624F4929CCA13D00518FB4 /* InsightData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4729CCA13D00518FB4 /* InsightData+CoreDataClass.swift */; };
 		34624F4A29CCA13D00518FB4 /* InsightData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */; };
+		34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */; };
+		34624F4D29CCA22C00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 		34624F4429CC9FDA00518FB4 /* InsightDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InsightDataModel.xcdatamodel; sourceTree = "<group>"; };
 		34624F4729CCA13D00518FB4 /* InsightData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsightData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsightData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		34624F4E29CCA24800518FB4 /* InsightCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InsightCapture.entitlements; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				34624F4329CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld */,
 				34624F4729CCA13D00518FB4 /* InsightData+CoreDataClass.swift */,
 				34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */,
+				34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 		346FAD8529B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXGroup;
 			children = (
+				34624F4E29CCA24800518FB4 /* InsightCapture.entitlements */,
 				34624F4229CC9EB500518FB4 /* CoreData */,
 				34624F3E29CB2FFB00518FB4 /* Extensions */,
 				34624F1129C1C12900518FB4 /* Info.plist */,
@@ -273,6 +279,7 @@
 			files = (
 				34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */,
 				34624F4129CB302F00518FB4 /* UIColor+.swift in Sources */,
+				34624F4D29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
 				34624F4629CCA10D00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +293,7 @@
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
 				34624F4529CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
+				34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
 				34624F4029CB300A00518FB4 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +490,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightCapture/InsightCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightCapture/Preview Content\"";
@@ -514,6 +523,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InsightCapture/InsightCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InsightCapture/Preview Content\"";
