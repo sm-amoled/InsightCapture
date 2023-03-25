@@ -20,6 +20,10 @@
 		34624F4A29CCA13D00518FB4 /* InsightData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */; };
 		34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */; };
 		34624F4D29CCA22C00518FB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */; };
+		34624F5029CCA3F000518FB4 /* InsightData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4729CCA13D00518FB4 /* InsightData+CoreDataClass.swift */; };
+		34624F5129CCA3F400518FB4 /* InsightData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */; };
+		34624F5329CEDD9E00518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F5229CEDD9E00518FB4 /* Insight.swift */; };
+		34624F5429CEDF7600518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F5229CEDD9E00518FB4 /* Insight.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -62,6 +66,8 @@
 		34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsightData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		34624F4E29CCA24800518FB4 /* InsightCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InsightCapture.entitlements; sourceTree = "<group>"; };
+		34624F4F29CCA29500518FB4 /* share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = share.entitlements; sourceTree = "<group>"; };
+		34624F5229CEDD9E00518FB4 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 		34624F2E29CAE57D00518FB4 /* share */ = {
 			isa = PBXGroup;
 			children = (
+				34624F4F29CCA29500518FB4 /* share.entitlements */,
 				34624F2F29CAE57D00518FB4 /* ShareViewController.swift */,
 				34624F3129CAE57D00518FB4 /* MainInterface.storyboard */,
 				34624F3429CAE57D00518FB4 /* Info.plist */,
@@ -121,6 +128,7 @@
 				34624F4729CCA13D00518FB4 /* InsightData+CoreDataClass.swift */,
 				34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */,
 				34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */,
+				34624F5229CEDD9E00518FB4 /* Insight.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -277,8 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34624F5129CCA3F400518FB4 /* InsightData+CoreDataProperties.swift in Sources */,
+				34624F5029CCA3F000518FB4 /* InsightData+CoreDataClass.swift in Sources */,
 				34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */,
 				34624F4129CB302F00518FB4 /* UIColor+.swift in Sources */,
+				34624F5429CEDF7600518FB4 /* Insight.swift in Sources */,
 				34624F4D29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
 				34624F4629CCA10D00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 			);
@@ -294,6 +305,7 @@
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
 				34624F4529CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 				34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
+				34624F5329CEDD9E00518FB4 /* Insight.swift in Sources */,
 				34624F4029CB300A00518FB4 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +335,7 @@
 		34624F3929CAE57D00518FB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = share/share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JPL38XBHJ4;
@@ -348,6 +361,7 @@
 		34624F3A29CAE57D00518FB4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = share/share.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JPL38XBHJ4;

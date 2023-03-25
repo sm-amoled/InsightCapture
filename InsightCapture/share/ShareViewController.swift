@@ -9,7 +9,13 @@ import SnapKit
 class ShareViewController: UIViewController {
     
     // MARK: Properties
+    var sourceType: InsightType = .brain
     
+    
+    // source - name 으로 작명하였음
+    var imageThumbnailImage: UIImage?
+    
+    var url: URL?
     var urlThumbnailImage: UIImage?
     var urlTitle: String?
     var urlDescription: String?
@@ -39,8 +45,8 @@ class ShareViewController: UIViewController {
         bar.barStyle = .default
         
         let item = UINavigationItem(title: "HELLOWORLD")
-        item.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
-        item.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: nil)
+        item.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(tapCancelButton))
+        item.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(tapSaveButton))
         
         bar.items = [item]
         
@@ -136,11 +142,15 @@ class ShareViewController: UIViewController {
                     
                     // 만약 이미지 파일이라면
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+                        
+                        sourceType = .image
                         self.setImageSourceLayout()
-
+                        
                         itemProvider.loadItem(forTypeIdentifier: UTType.image.identifier, options: nil) { (data, error) in
                             if let data = data {
                                 let image = UIImage(data: NSData(contentsOf: (data as! NSURL) as URL)! as Data)
+                                
+                                self.imageThumbnailImage = image
                                 
                                 DispatchQueue.main.async {
                                     self.sourceImageView.image = image
@@ -152,10 +162,13 @@ class ShareViewController: UIViewController {
                     
                     // 만약 URL 타입이라면
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+                        
+                        sourceType = .url
                         self.setUrlSourceLayout()
 
                         itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
-
+                            self.url = url as! URL
+                            
                             self.fetchData(from: url as! URL)
                             self.isShowingSourceViewIndicator = false
                         }
@@ -314,6 +327,28 @@ extension ShareViewController {
                 }
             })
         }
+    }
+    
+    @objc
+    func tapSaveButton() {
+        var insight: Insight!
+        
+        switch(sourceType) {
+        case .image:
+            insight = .init(image: imageThumbnailImage!, text: descriptionTextField.text ?? "NO_CONTENT", title: titleTextField.text ?? "NO_TITLE")
+        case .url:
+            insight = .init(url: url!, text: descriptionTextField.text!, title: titleTextField.text!)
+        default:
+            insight = .init(text: descriptionTextField.text!, title: titleTextField.text!)
+        }
+        
+        CoreDataManager.shared.createInsight(insight: insight)
+        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+    }
+    
+    @objc
+    func tapCancelButton() {
+        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 }
 

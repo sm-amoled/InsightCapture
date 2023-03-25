@@ -20,7 +20,7 @@ extension InsightData {
     @NSManaged public var text: String?
     @NSManaged public var createdDate: Date?
     @NSManaged public var title: String?
-    @NSManaged public var url: String?
+    @NSManaged public var urlString: String?
     @NSManaged public var image: Data?
     @NSManaged public var quote: String?
 

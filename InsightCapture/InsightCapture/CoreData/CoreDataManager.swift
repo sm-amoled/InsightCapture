@@ -89,10 +89,15 @@ extension CoreDataManager {
     func createInsight(insight: Insight) {
         let newInsight = InsightData(context: context)
         
-        newInsight.thumbnailImage = insight.thumbnailImage?.pngData()
-        newInsight.createDate = insight.createDate
-        newInsight.url = insight.url
-        newInsight.insightString = insight.insightString
+        newInsight.type = insight.type
+        newInsight.createdDate = insight.createdDate
+        
+        newInsight.title = insight.title
+        newInsight.text = insight.text
+        
+        newInsight.urlString = insight.urlString
+        newInsight.quote = insight.quote
+        newInsight.image = insight.image
         
         save()
     }
