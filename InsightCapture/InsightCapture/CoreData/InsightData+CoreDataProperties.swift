@@ -29,3 +29,7 @@ extension InsightData {
 extension InsightData : Identifiable {
 
 }
+
+//extension InsightData {
+//    
+//}
