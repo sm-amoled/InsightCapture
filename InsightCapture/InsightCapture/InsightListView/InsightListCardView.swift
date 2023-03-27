@@ -18,7 +18,7 @@ struct InsightListCardView: View {
                 .foregroundColor(Color(uiColor: UIColor.systemGray5))
             ScrollView {
                 if !insightList.isEmpty {
-                    InsightListURLCardView(insight: insightList.last!)
+                    InsightListQuoteCardView(insight: insightList.last!)
                 }
             }
         }
@@ -223,7 +223,91 @@ struct InsightListURLCardView: View {
                     self.urlImage = (image as! UIImage)
                 })
             }
-
         }
+    }
+}
+
+struct InsightListQuoteCardView: View {
+    @State var insight: InsightData
+    
+    @State var quote: String?
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("3일 전")
+                    .font(Font.system(size: 13, weight: .medium))
+                
+                Spacer()
+                Button {
+                    // 더 보기 액션 구현하기
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .font(Font.system(size: 13, weight: .medium))
+                        .foregroundColor(.black)
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.top, 12)
+            
+            VStack(alignment: .leading) {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color.randomColor(from: insight.createdDate ?? Date()))
+                        .padding(.horizontal, 50)
+                    
+                    VStack {
+                        Image(systemName: "quote.opening")
+                            .padding(.top, 8)
+                        
+                        Text(insight.quote ?? "")
+                            .font(Font.system(size: 16, weight: .medium))
+                            .lineLimit(3)
+                            .padding(.top, 8)
+                            .padding(.bottom, 16)
+                        
+                        HStack {
+                            Spacer()
+                        }
+                    }
+                    .padding(.all, 8)
+                    .cornerRadius(10)
+                }
+                .padding(.horizontal, 8)
+                .padding(.top, 6)
+                
+                Text(insight.title!)
+                    .font(Font.system(size: 16, weight: .semibold))
+                    .lineLimit(1)
+                    .padding(.horizontal, 12)
+                    .padding(.bottom, 4)
+                
+                Text(insight.text!)
+                    .font(Font.system(size: 16, weight: .medium))
+                    .lineLimit(3)
+                    .padding(.horizontal, 12)
+                    .padding(.bottom, 16)
+                
+                
+                HStack {
+                    Spacer()
+                    Text("자세히 보기")
+                        .font(Font.system(size: 13, weight: .medium))
+                }
+                .padding(.horizontal, 12)
+                .padding(.bottom, 16)
+            }
+            .onTapGesture {
+                // 눌렀을 때의 Action
+            }
+            
+        }
+        .background {
+            Rectangle()
+                .foregroundColor(.white)
+                .cornerRadius(8)
+                .shadow(color: .init(uiColor: UIColor(white: 0, alpha: 0.25)), radius: 4, x: 0, y: 1)
+        }
+        .padding(.horizontal, 16)
     }
 }
