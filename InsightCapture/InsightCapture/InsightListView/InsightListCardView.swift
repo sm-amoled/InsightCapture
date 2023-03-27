@@ -17,8 +17,19 @@ struct InsightListCardView: View {
             Rectangle()
                 .foregroundColor(Color(uiColor: UIColor.systemGray5))
             ScrollView {
-                if !insightList.isEmpty {
-                    InsightListBrainCardView(insight: insightList.last!)
+                ForEach(insightList) { insightData in
+                    switch(insightData.type) {
+                    case InsightType.image.rawValue:
+                        InsightListImageCardView(insight: insightData)
+                    case InsightType.url.rawValue:
+                        InsightListURLCardView(insight: insightData)
+                    case InsightType.quote.rawValue:
+                        InsightListQuoteCardView(insight: insightData)
+                    case InsightType.brain.rawValue:
+                        InsightListBrainCardView(insight: insightData)
+                    default:
+                        EmptyView()
+                    }
                 }
             }
         }
@@ -359,7 +370,7 @@ struct InsightListBrainCardView: View {
             }
             .onTapGesture {
                 // 눌렀을 때의 Action
-            }   
+            }
         }
         .background {
             Rectangle()
