@@ -165,6 +165,7 @@
 		346FAD8529B718B3004CEE9B /* InsightCapture */ = {
 			isa = PBXGroup;
 			children = (
+				34C8FD9329D1565F003401CE /* UIComponents */,
 				34624F4E29CCA24800518FB4 /* InsightCapture.entitlements */,
 				34624F4229CC9EB500518FB4 /* CoreData */,
 				34624F3E29CB2FFB00518FB4 /* Extensions */,
@@ -184,6 +185,13 @@
 				346FAD8D29B718B4004CEE9B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34C8FD9329D1565F003401CE /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
