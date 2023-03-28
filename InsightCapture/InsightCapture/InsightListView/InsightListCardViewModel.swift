@@ -28,15 +28,16 @@ class InsightListCardViewModel: ObservableObject  {
                 if error != nil { return }
                 guard let data = metaData else { return }
                 
-                self.urlTitle = data.title
-                self.urlDescription = (data.value(forKey: "summary") as! String)
-                
                 data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                     
                     if error != nil { return }
                     guard let image = image else { return }
                     
-                    self.urlImage = (image as! UIImage)
+                    DispatchQueue.main.async {
+                        self.urlTitle = data.title
+                        self.urlDescription = (data.value(forKey: "summary") as! String)
+                        self.urlImage = (image as! UIImage)
+                    }
                 })
             }
         }
