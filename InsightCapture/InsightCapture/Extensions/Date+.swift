@@ -29,6 +29,7 @@ extension Date {
         case "d":
             if Int(timeValue)! <= 28 {
                 result.append(timeValue)
+                result.append("일 전")
             } else {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
