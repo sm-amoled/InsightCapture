@@ -46,7 +46,7 @@ struct InsightListImageCardView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("3일 전")
+                Text(insight.createdDate!.createCardDateString())
                     .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
@@ -124,8 +124,7 @@ struct InsightListURLCardView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("3일 전")
-                    .font(Font.system(size: 13, weight: .medium))
+                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
@@ -204,7 +203,6 @@ struct InsightListURLCardView: View {
             }
             .onTapGesture {
                 // 눌렀을 때의 Action
-                insight.createdDate!.createCardDateString()
             }
             
         }
@@ -247,8 +245,7 @@ struct InsightListQuoteCardView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("3일 전")
-                    .font(Font.system(size: 13, weight: .medium))
+                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
@@ -330,8 +327,7 @@ struct InsightListBrainCardView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("3일 전")
-                    .font(Font.system(size: 13, weight: .medium))
+                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
