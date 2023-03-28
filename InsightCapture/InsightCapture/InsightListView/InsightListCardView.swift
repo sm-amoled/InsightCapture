@@ -9,7 +9,7 @@ import SwiftUI
 import LinkPresentation
 
 struct InsightListCardView: View {
-    @ObservedObject var viewModel: InsightListCardViewModel
+    @StateObject var viewModel: InsightListCardViewModel
 
     var body: some View {
         VStack {
@@ -131,7 +131,6 @@ struct InsightListCardView: View {
                     .padding(.horizontal, 12)
                     .padding(.bottom, 16)
                 
-                
                 HStack {
                     Spacer()
                     Text("자세히 보기")
@@ -143,7 +142,6 @@ struct InsightListCardView: View {
             .onTapGesture {
                 // 눌렀을 때의 Action
             }
-            
         }
         .background {
             Rectangle()
