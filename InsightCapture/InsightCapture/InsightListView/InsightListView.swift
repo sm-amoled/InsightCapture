@@ -23,18 +23,7 @@ struct InsightListView: View {
                     .frame(height: 50)
                 
                 ForEach(viewModel.insightList) { insightData in
-                    switch(insightData.type) {
-                    case InsightType.image.rawValue:
-                        InsightListImageCardView(viewModel: InsightListCardViewModel(insight: insightData))
-                    case InsightType.url.rawValue:
-                        InsightListURLCardView(viewModel: InsightListCardViewModel(insight: insightData))
-                    case InsightType.quote.rawValue:
-                        InsightListQuoteCardView(viewModel: InsightListCardViewModel(insight: insightData))
-                    case InsightType.brain.rawValue:
-                        InsightListBrainCardView(viewModel: InsightListCardViewModel(insight: insightData))
-                    default:
-                        EmptyView()
-                    }
+                    InsightListCardView(viewModel: InsightListCardViewModel(insight: insightData))
                 }
             }
             .scrollIndicators(.hidden)
