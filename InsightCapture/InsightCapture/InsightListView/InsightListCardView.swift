@@ -204,6 +204,7 @@ struct InsightListURLCardView: View {
             }
             .onTapGesture {
                 // 눌렀을 때의 Action
+                insight.createdDate!.createCardDateString()
             }
             
         }
