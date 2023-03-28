@@ -13,10 +13,15 @@ struct InsightListCardView: View {
     @State var insightList: [InsightData] = []
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             Rectangle()
                 .foregroundColor(Color(uiColor: UIColor.systemGray5))
+                .edgesIgnoringSafeArea(.vertical)
+            
             ScrollView {
+                Spacer()
+                    .frame(height: 50)
+                
                 ForEach(insightList) { insightData in
                     switch(insightData.type) {
                     case InsightType.image.rawValue:
@@ -32,6 +37,34 @@ struct InsightListCardView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
+            
+            ZStack {
+                HStack(spacing: 8) {
+                    Text("Insight Capture")
+                        .font(Font.system(size: 18, weight: .semibold))
+
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "person.circle")
+                            .font(Font.system(size: 18, weight: .semibold))
+                            .foregroundColor(.black)
+                    }
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(Font.system(size: 18, weight: .semibold))
+                            .foregroundColor(.black)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+            }
+            .background(Color(uiColor: UIColor.systemGray5))
         }
         
         .onAppear {
@@ -226,7 +259,7 @@ struct InsightListURLCardView: View {
                 self.urlDescription = (data.value(forKey: "summary") as! String)
                 
                 data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
-
+                    
                     if error != nil { return }
                     guard let image = image else { return }
                     
