@@ -48,7 +48,6 @@ extension Date {
             print("yyyy-mm-dd")
         }
         
-        print(result)
         return result
     }
 }

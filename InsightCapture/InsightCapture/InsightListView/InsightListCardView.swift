@@ -1,85 +1,20 @@
 //
-//  InsightListCardView.swift
+//  InsightListCardViews.swift
 //  InsightCapture
 //
-//  Created by Park Sungmin on 2023/03/27.
+//  Created by Park Sungmin on 2023/03/28.
 //
 
 import SwiftUI
 import LinkPresentation
 
-struct InsightListCardView: View {
-    
-    @State var insightList: [InsightData] = []
-    
-    var body: some View {
-        ZStack(alignment: .top) {
-            Rectangle()
-                .foregroundColor(Color(uiColor: UIColor.systemGray5))
-                .edgesIgnoringSafeArea(.vertical)
-            
-            ScrollView {
-                Spacer()
-                    .frame(height: 50)
-                
-                ForEach(insightList) { insightData in
-                    switch(insightData.type) {
-                    case InsightType.image.rawValue:
-                        InsightListImageCardView(insight: insightData)
-                    case InsightType.url.rawValue:
-                        InsightListURLCardView(insight: insightData)
-                    case InsightType.quote.rawValue:
-                        InsightListQuoteCardView(insight: insightData)
-                    case InsightType.brain.rawValue:
-                        InsightListBrainCardView(insight: insightData)
-                    default:
-                        EmptyView()
-                    }
-                }
-            }
-            .scrollIndicators(.hidden)
-            
-            ZStack {
-                HStack(spacing: 8) {
-                    Text("Insight Capture")
-                        .font(Font.system(size: 18, weight: .semibold))
-
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "person.circle")
-                            .font(Font.system(size: 18, weight: .semibold))
-                            .foregroundColor(.black)
-                    }
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(Font.system(size: 18, weight: .semibold))
-                            .foregroundColor(.black)
-                    }
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-            }
-            .background(Color(uiColor: UIColor.systemGray5))
-        }
-        
-        .onAppear {
-            insightList = CoreDataManager.shared.getAllInsights()
-        }
-    }
-}
-
 struct InsightListImageCardView: View {
-    @State var insight: InsightData
-    
+    @ObservedObject var viewModel: InsightListCardViewModel
+
     var body: some View {
         VStack {
             HStack {
-                Text(insight.createdDate!.createCardDateString())
+                Text(viewModel.insight.createdDate!.createCardDateString())
                     .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
@@ -96,10 +31,10 @@ struct InsightListImageCardView: View {
             
             VStack(alignment: .leading) {
                 ZStack {
-                    if insight.image == nil {
+                    if viewModel.insight.image == nil {
                         Text("이미지 없음")
                     } else {
-                        Image(uiImage: UIImage(data: insight.image!)!)
+                        Image(uiImage: UIImage(data: viewModel.insight.image!)!)
                             .resizable()
                             .frame(width: UIScreen.main.bounds.size.width - 32 - 16, height: (UIScreen.main.bounds.size.width - 32 - 16) * 0.56)
                             .cornerRadius(8)
@@ -111,13 +46,13 @@ struct InsightListImageCardView: View {
                 .padding(.top, 6)
                 
                 
-                Text(insight.title!)
+                Text(viewModel.insight.title!)
                     .font(Font.system(size: 16, weight: .semibold))
                     .lineLimit(1)
                     .padding(.horizontal, 12)
                     .padding(.bottom, 4)
                 
-                Text(insight.text!)
+                Text(viewModel.insight.text!)
                     .font(Font.system(size: 16, weight: .medium))
                     .lineLimit(3)
                     .padding(.horizontal, 12)
@@ -148,16 +83,12 @@ struct InsightListImageCardView: View {
 }
 
 struct InsightListURLCardView: View {
-    @State var insight: InsightData
-    
-    @State var urlImage: UIImage?
-    @State var urlTitle: String?
-    @State var urlDescription: String?
+    @ObservedObject var viewModel: InsightListCardViewModel
     
     var body: some View {
         VStack {
             HStack {
-                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
+                Text(viewModel.insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
@@ -174,8 +105,8 @@ struct InsightListURLCardView: View {
             VStack(alignment: .leading) {
                 ZStack {
                     HStack {
-                        if urlImage != nil {
-                            Image(uiImage: urlImage!)
+                        if viewModel.urlImage != nil {
+                            Image(uiImage: viewModel.urlImage!)
                                 .resizable()
                                 .frame(width: 136, height: 76)
                                 .clipped()
@@ -186,12 +117,12 @@ struct InsightListURLCardView: View {
                         }
                         
                         VStack(alignment: .leading) {
-                            Text(urlTitle ?? "")
+                            Text(viewModel.urlTitle ?? "")
                                 .font(Font.system(size: 15, weight: .bold))
                                 .lineLimit(2)
                                 .padding(.vertical, 2)
                             
-                            Text(urlDescription ?? "")
+                            Text(viewModel.urlDescription ?? "")
                                 .font(Font.system(size: 12, weight: .light))
                                 .lineLimit(1)
                                 .foregroundColor(.gray)
@@ -206,20 +137,20 @@ struct InsightListURLCardView: View {
                     .background(Color(uiColor: UIColor.systemGray5))
                     .cornerRadius(10)
                     
-                    if urlImage == nil {
+                    if viewModel.urlImage == nil {
                         ProgressView()
                     }
                 }
                 .padding(.horizontal, 8)
                 .padding(.top, 6)
                 
-                Text(insight.title!)
+                Text(viewModel.insight.title!)
                     .font(Font.system(size: 16, weight: .semibold))
                     .lineLimit(1)
                     .padding(.horizontal, 12)
                     .padding(.bottom, 4)
                 
-                Text(insight.text!)
+                Text(viewModel.insight.text!)
                     .font(Font.system(size: 16, weight: .medium))
                     .lineLimit(3)
                     .padding(.horizontal, 12)
@@ -246,39 +177,18 @@ struct InsightListURLCardView: View {
                 .shadow(color: .init(uiColor: UIColor(white: 0, alpha: 0.25)), radius: 4, x: 0, y: 1)
         }
         .padding(.horizontal, 16)
-        .onAppear {
-            // Insight 내 URL 에서 필요한 정보 불러오기
-            guard let url = URL(string: insight.urlString ?? "") else { return }
-            
-            let provider = LPMetadataProvider()
-            provider.startFetchingMetadata(for: url) { metaData, error in
-                if error != nil { return }
-                guard let data = metaData else { return }
-                
-                self.urlTitle = data.title
-                self.urlDescription = (data.value(forKey: "summary") as! String)
-                
-                data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
-                    
-                    if error != nil { return }
-                    guard let image = image else { return }
-                    
-                    self.urlImage = (image as! UIImage)
-                })
-            }
-        }
     }
 }
 
 struct InsightListQuoteCardView: View {
-    @State var insight: InsightData
-    
+    @ObservedObject var viewModel: InsightListCardViewModel
+
     @State var quote: String?
     
     var body: some View {
         VStack {
             HStack {
-                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
+                Text(viewModel.insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
@@ -295,14 +205,14 @@ struct InsightListQuoteCardView: View {
             VStack(alignment: .leading) {
                 ZStack {
                     Rectangle()
-                        .foregroundColor(Color.randomColor(from: insight.createdDate ?? Date()))
+                        .foregroundColor(Color.randomColor(from: viewModel.insight.createdDate ?? Date()))
                         .padding(.horizontal, 50)
                     
                     VStack {
                         Image(systemName: "quote.opening")
                             .padding(.top, 8)
                         
-                        Text(insight.quote ?? "")
+                        Text(viewModel.insight.quote ?? "")
                             .font(Font.system(size: 16, weight: .medium))
                             .lineLimit(3)
                             .padding(.top, 8)
@@ -318,13 +228,13 @@ struct InsightListQuoteCardView: View {
                 .padding(.horizontal, 8)
                 .padding(.top, 6)
                 
-                Text(insight.title!)
+                Text(viewModel.insight.title!)
                     .font(Font.system(size: 16, weight: .semibold))
                     .lineLimit(1)
                     .padding(.horizontal, 12)
                     .padding(.bottom, 4)
                 
-                Text(insight.text!)
+                Text(viewModel.insight.text!)
                     .font(Font.system(size: 16, weight: .medium))
                     .lineLimit(3)
                     .padding(.horizontal, 12)
@@ -355,12 +265,12 @@ struct InsightListQuoteCardView: View {
 }
 
 struct InsightListBrainCardView: View {
-    @State var insight: InsightData
-    
+    @ObservedObject var viewModel: InsightListCardViewModel
+
     var body: some View {
         VStack {
             HStack {
-                Text(insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
+                Text(viewModel.insight.createdDate!.createCardDateString())                    .font(Font.system(size: 13, weight: .medium))
                 
                 Spacer()
                 Button {
@@ -377,13 +287,13 @@ struct InsightListBrainCardView: View {
             
             VStack(alignment: .leading) {
                 
-                Text(insight.title!)
+                Text(viewModel.insight.title!)
                     .font(Font.system(size: 16, weight: .semibold))
                     .lineLimit(1)
                     .padding(.horizontal, 12)
                     .padding(.bottom, 4)
                 
-                Text(insight.text!)
+                Text(viewModel.insight.text!)
                     .font(Font.system(size: 16, weight: .medium))
                     .lineLimit(3)
                     .padding(.horizontal, 12)
