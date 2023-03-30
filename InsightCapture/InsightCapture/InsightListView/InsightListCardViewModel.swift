@@ -16,6 +16,8 @@ class InsightListCardViewModel: ObservableObject  {
     @Published var urlTitle: String?
     @Published var urlDescription: String?
     
+    @Published var isShowingInsightPageView: Bool = false
+    
     init(insight: InsightData) {
         self.insight = insight
         
@@ -43,5 +45,7 @@ class InsightListCardViewModel: ObservableObject  {
         }
     }
     
-    
+    func tapCard() {
+        isShowingInsightPageView = true
+    }
 }

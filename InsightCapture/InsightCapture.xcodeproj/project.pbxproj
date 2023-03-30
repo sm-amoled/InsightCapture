@@ -36,6 +36,11 @@
 		34C8FD9F29D2C56A003401CE /* InsightListCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9E29D2C56A003401CE /* InsightListCardViewModel.swift */; };
 		34C8FDA229D30226003401CE /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDA129D30226003401CE /* MyPageView.swift */; };
 		34C8FDA529D30CE3003401CE /* AddInsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDA429D30CE3003401CE /* AddInsightView.swift */; };
+		34C8FDA829D31C1C003401CE /* InsightPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDA729D31C1C003401CE /* InsightPageView.swift */; };
+		34C8FDAA29D31C26003401CE /* InsightPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDA929D31C26003401CE /* InsightPageViewModel.swift */; };
+		34C8FDAC29D40D79003401CE /* OffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAB29D40D79003401CE /* OffsetModifier.swift */; };
+		34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAD29D42732003401CE /* UINavigationController+.swift */; };
+		34C8FDB029D42FFF003401CE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAF29D42FFF003401CE /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +94,11 @@
 		34C8FD9E29D2C56A003401CE /* InsightListCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightListCardViewModel.swift; sourceTree = "<group>"; };
 		34C8FDA129D30226003401CE /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		34C8FDA429D30CE3003401CE /* AddInsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsightView.swift; sourceTree = "<group>"; };
+		34C8FDA729D31C1C003401CE /* InsightPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPageView.swift; sourceTree = "<group>"; };
+		34C8FDA929D31C26003401CE /* InsightPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightPageViewModel.swift; sourceTree = "<group>"; };
+		34C8FDAB29D40D79003401CE /* OffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetModifier.swift; sourceTree = "<group>"; };
+		34C8FDAD29D42732003401CE /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		34C8FDAF29D42FFF003401CE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,8 @@
 				34624F3F29CB300A00518FB4 /* UIColor+.swift */,
 				34C8FD9429D1DEBE003401CE /* Color+.swift */,
 				34C8FD9629D26CA7003401CE /* Date+.swift */,
+				34C8FDAD29D42732003401CE /* UINavigationController+.swift */,
+				34C8FDAF29D42FFF003401CE /* View+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -193,6 +205,7 @@
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
 				34C8FDA329D30B37003401CE /* AddInsightView */,
 				34C8FDA029D30212003401CE /* MyPageView */,
+				34C8FDA629D31B82003401CE /* InsightPageView */,
 				34624F5A29D1330E00518FB4 /* InsightListView */,
 				346FAD8A29B718B4004CEE9B /* Assets.xcassets */,
 				346FAD8C29B718B4004CEE9B /* Preview Content */,
@@ -211,6 +224,7 @@
 		34C8FD9329D1565F003401CE /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				34C8FDAB29D40D79003401CE /* OffsetModifier.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -229,6 +243,15 @@
 				34C8FDA429D30CE3003401CE /* AddInsightView.swift */,
 			);
 			path = AddInsightView;
+			sourceTree = "<group>";
+		};
+		34C8FDA629D31B82003401CE /* InsightPageView */ = {
+			isa = PBXGroup;
+			children = (
+				34C8FDA729D31C1C003401CE /* InsightPageView.swift */,
+				34C8FDA929D31C26003401CE /* InsightPageViewModel.swift */,
+			);
+			path = InsightPageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C8FD9729D26CA7003401CE /* Date+.swift in Sources */,
+				34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */,
 				34624F4A29CCA13D00518FB4 /* InsightData+CoreDataProperties.swift in Sources */,
+				34C8FDAA29D31C26003401CE /* InsightPageViewModel.swift in Sources */,
+				34C8FDB029D42FFF003401CE /* View+.swift in Sources */,
+				34C8FDAC29D40D79003401CE /* OffsetModifier.swift in Sources */,
 				34C8FDA229D30226003401CE /* MyPageView.swift in Sources */,
 				34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */,
 				34624F4929CCA13D00518FB4 /* InsightData+CoreDataClass.swift in Sources */,
@@ -365,6 +392,7 @@
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
 				346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */,
 				34C8FDA529D30CE3003401CE /* AddInsightView.swift in Sources */,
+				34C8FDA829D31C1C003401CE /* InsightPageView.swift in Sources */,
 				34624F4529CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 				34C8FD9D29D2C47D003401CE /* InsightListViewModel.swift in Sources */,
 				34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
