@@ -9,60 +9,75 @@ import SwiftUI
 
 struct InsightPageView: View {
     @StateObject var viewModel: InsightPageViewModel
-    @State var offset: CGFloat = 0
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @GestureState private var dragOffset = CGSize.zero
     
-    let maxHeight = UIScreen.main.bounds.height / 2.6
-    let topEdge: CGFloat = 15
-    
     var body: some View {
         ZStack(alignment: .top) {
+            VStack{
+                ZStack {
+                    Color.randomColor(from: viewModel.insight.createdDate ?? Date())
+                    
+                    if viewModel.insight.image != nil {
+                        Image(uiImage: UIImage(data: viewModel.insight.image!)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                    }
+                }
+                .frame(width: UIScreen.main.bounds.width, height: viewModel.getHeaderHeight())
+                
+                Spacer()
+            }
+            
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     GeometryReader { proxy in
-                        TopBar(maxHeight: maxHeight, offset: $viewModel.offset, viewModel: viewModel)
+                        TopBar(maxHeight: viewModel.maxHeight, offset: $viewModel.offset, viewModel: viewModel)
                             .frame(maxWidth: .infinity)
-                            .frame(height: getHeaderHeight(), alignment: .bottom)
-                            .background {
-                                Color.mint
-                            }
+                            .frame(height: viewModel.getHeaderHeight(), alignment: .bottom)
                     }
-                    .frame(height: maxHeight)
+                    .frame(height: viewModel.maxHeight)
                     .offset(y: -viewModel.offset)
-                    .zIndex(1)
+                    .zIndex(2)
                     
                     VStack {
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
-                        Text("Hello, World")
-                            .frame(height: 100)
+                        VStack {
+                            Text(viewModel.insight.createdDate?.toPageDateString() ?? "")
+                                .font(Font.system(size: 13, weight: .medium))
+                                .padding(.bottom, 24)
+                            
+                            Text(viewModel.insight.text ?? "")
+                                .multilineTextAlignment(.center)
+                                .font(Font.system(size: 16, weight: .medium))
+                            
+                            Spacer()
+                                .frame(height: 100)
+                        }
+                        .padding(.horizontal, 16)
                     }
-                    .zIndex(0)
+                    .zIndex(1)
+                    .background {
+                        VStack {
+                            Rectangle()
+                                .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                        }
+                        .offset(y:-20)
+                    }
                 }
                 .modifier(OffsetModifier(offset: $viewModel.offset))
             }
+            .background {
+                
+            }
         }
-        .background(Color.gray)
+        //        .background(Color.mint)
         .coordinateSpace(name: "SCROLL")
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
@@ -81,7 +96,7 @@ struct InsightPageView: View {
                 Text(viewModel.insight.title ?? "")
                     .lineLimit(1)
                     .font(Font.system(size: 16, weight: .medium))
-                    .opacity(getToolbarTitleOpacity() )
+                    .opacity(viewModel.getToolbarTitleOpacity() )
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -95,24 +110,7 @@ struct InsightPageView: View {
             }
         }
         //210에서 색 보여주기
-        .toolbarBackground(.hidden, for: .navigationBar)
-    }
-    
-    func getHeaderHeight() -> CGFloat {
-        let topHeight = maxHeight + viewModel.offset
-        
-        return max(topHeight, 80 + topEdge)
-    }
-    
-    func getTopBarTitleOpacity() -> CGFloat {
-        let progress = -(viewModel.offset + 120 ) / (maxHeight - (80 + topEdge) - 150)
-        
-        return progress
-    }
-    
-    func getToolbarTitleOpacity() -> CGFloat {
-        let progress = -(viewModel.offset + 120) / (maxHeight - (80 + topEdge) - 100)
-        return progress
+        .toolbarBackground(Color.white, for: .navigationBar)
     }
 }
 
@@ -126,40 +124,35 @@ struct TopBar: View {
     @ObservedObject var viewModel: InsightPageViewModel
     
     var body: some View {
-        VStack {
+        VStack{
             Spacer()
-            Text(viewModel.insight.title  ?? "")
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .font(Font.system(size: 24, weight: .semibold))
-                .padding()
-                .opacity(1 - getTopBarTitleOpacity())
-            Divider()
-        }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .frame(height: 260)
-        .padding(.horizontal, 26)
-        .background(
+            
             ZStack {
                 VStack {
                     Spacer()
-                    ZStack {
+                    Text(viewModel.insight.title  ?? "")
+                        .frame(alignment: .center)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .font(Font.system(size: 24, weight: .semibold))
+                        .padding(.horizontal, 20)
+                        .opacity(1 - getTopBarTitleOpacity())
+                    Spacer()
+                }
+                .padding(.top, 30)
+                .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+                .background {
+                    VStack {
+                        Spacer()
                         Rectangle()
-                            .cornerRadius(getCornerRadius(), corners: [.topLeft, .topRight])
+                            .cornerRadius(60, corners: [.topLeft, .topRight])
                             .foregroundColor(.white)
-                            .frame(height: topBarHeight)
+                            .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
                     }
                 }
             }
-        )
-    }
-    
-    func getCornerRadius() -> CGFloat {
-        let progress = -offset / 110
-        let cornerRadius = (1 - progress) * topBarHeight/2
-        
-//        return offset > 0 ? topBarHeight/2 : (cornerRadius > 0 ? cornerRadius : 0)
-        return topBarHeight/2
+        }
+        .frame(width: UIScreen.main.bounds.width, height: maxHeight)
     }
     
     func getTopBarTitleOpacity() -> CGFloat {

@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    public func createCardDateString() -> String {
+    public func toCardDateString() -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.maximumUnitCount = 1
@@ -49,5 +49,12 @@ extension Date {
         }
         
         return result
+    }
+    
+    public func toPageDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter.string(from: self)
     }
 }

@@ -14,7 +14,7 @@ struct InsightListCardView: View {
     var body: some View {
             VStack {
                 HStack {
-                    Text(viewModel.insight.createdDate!.createCardDateString())
+                    Text(viewModel.insight.createdDate!.toCardDateString())
                         .font(Font.system(size: 13, weight: .medium))
                     
                     Spacer()
