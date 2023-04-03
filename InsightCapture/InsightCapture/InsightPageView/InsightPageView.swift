@@ -21,8 +21,8 @@ struct InsightPageView: View {
                 ZStack {
                     Color.randomColor(from: viewModel.insight.createdDate ?? Date())
                     
-                    if viewModel.insight.image != nil {
-                        Image(uiImage: UIImage(data: viewModel.insight.image!)!)
+                    if viewModel.image != nil {
+                        Image(uiImage: viewModel.image!)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .clipped()
@@ -61,14 +61,17 @@ struct InsightPageView: View {
                     }
                     .zIndex(1)
                     .background {
-                        VStack {
-                            Rectangle()
-                                .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
-                                .foregroundColor(.white)
-                            
-                            Spacer()
+                        ZStack{
+                            VStack {
+                                Rectangle()
+                                    .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
+                                    .foregroundColor(.white)
+                                
+                                Spacer()
+                            }
+                            .offset(y:-20)
+                            Color.white
                         }
-                        .offset(y:-20)
                     }
                 }
                 .modifier(OffsetModifier(offset: $viewModel.offset))
