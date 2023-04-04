@@ -16,28 +16,33 @@ struct ImageSourceView: View {
         Button {
             isShowingImage = true
         } label: {
-            Image(uiImage: UIImage(data: insight.image!)!)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(18, corners: .allCorners)
+            if insight.image != nil {
+                Image(uiImage: UIImage(data: insight.image!)!)
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(18, corners: .allCorners)
+            }
         }
         .navigationDestination(isPresented: $isShowingImage) {
-            SwiftUIImageViewer(image: Image(uiImage: UIImage(data: insight.image!)!))
-                .background(Color.black)
-                .navigationBarBackButtonHidden()
-                .toolbarBackground(.hidden, for: .navigationBar)
-                .edgesIgnoringSafeArea(.all)
-//                .preferredColorScheme(.dark)
-                .overlay(alignment: .topLeading) {
-                    Button {
-                        self.isShowingImage = false
-                    } label: {
-                        Label("", systemImage: "arrow.left")
-                            .foregroundColor(.white)
-                            .font(Font.system(size: 16, weight: .bold))
+            if insight.image != nil {
+                
+                SwiftUIImageViewer(image: Image(uiImage: UIImage(data: insight.image!)!))
+                    .background(Color.black)
+                    .navigationBarBackButtonHidden()
+                    .toolbarBackground(.hidden, for: .navigationBar)
+                    .edgesIgnoringSafeArea(.all)
+                //                .preferredColorScheme(.dark)
+                    .overlay(alignment: .topLeading) {
+                        Button {
+                            self.isShowingImage = false
+                        } label: {
+                            Label("", systemImage: "arrow.left")
+                                .foregroundColor(.white)
+                                .font(Font.system(size: 16, weight: .bold))
+                        }
+                        .padding(.leading, 16)
                     }
-                    .padding(.leading, 16)
-                }
+            }
         }
     }
 }

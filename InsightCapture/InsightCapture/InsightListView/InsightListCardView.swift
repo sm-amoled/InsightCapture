@@ -12,6 +12,7 @@ struct InsightListCardView: View {
     @StateObject var viewModel: InsightListCardViewModel
     
     var body: some View {
+        if viewModel.insight.title != nil {
             VStack {
                 HStack {
                     Text(viewModel.insight.createdDate!.toCardDateString())
@@ -146,7 +147,7 @@ struct InsightListCardView: View {
             }
             .navigationDestination(isPresented: $viewModel.isShowingInsightPageView, destination: {
                 InsightPageView(viewModel: InsightPageViewModel(insight: viewModel.insight))
-
+                
             })
             .background {
                 Rectangle()
@@ -154,6 +155,7 @@ struct InsightListCardView: View {
                     .cornerRadius(8)
                     .shadow(color: .init(uiColor: UIColor(white: 0, alpha: 0.25)), radius: 4, x: 0, y: 1)
             }
-        .padding(.horizontal, 16)
+            .padding(.horizontal, 16)
+        }
     }
 }

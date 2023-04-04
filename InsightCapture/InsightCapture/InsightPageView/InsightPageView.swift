@@ -105,7 +105,7 @@ struct InsightPageView: View {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    //
+                    viewModel.isShowingActions = true
                 } label: {
                     Image(systemName: "ellipsis")
                         .foregroundColor(.black)
@@ -113,8 +113,16 @@ struct InsightPageView: View {
                 }
             }
         }
-        //210에서 색 보여주기
         .toolbarBackground(Color.white, for: .navigationBar)
+        .confirmationDialog("인사이트", isPresented: $viewModel.isShowingActions, titleVisibility: .hidden) {
+            Button("수정하기", action: {
+                
+            })
+            Button("삭제하기", role: .destructive, action: {
+                viewModel.deleteInsight()
+                dismiss()
+            })
+        }
     }
 }
 
