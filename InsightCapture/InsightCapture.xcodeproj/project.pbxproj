@@ -34,6 +34,7 @@
 		3480CE9B29DABFC000649B6D /* QuoteSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480CE9A29DABFC000649B6D /* QuoteSourceView.swift */; };
 		3480CE9C29DACE8C00649B6D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9429D1DEBE003401CE /* Color+.swift */; };
 		3480CE9E29DAE55B00649B6D /* ImageSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */; };
+		3480CEA629DC02EA00649B6D /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 3480CEA529DC02EA00649B6D /* SwiftUIImageViewer */; };
 		34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9429D1DEBE003401CE /* Color+.swift */; };
 		34C8FD9729D26CA7003401CE /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9629D26CA7003401CE /* Date+.swift */; };
 		34C8FD9B29D2C43B003401CE /* InsightListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9A29D2C43B003401CE /* InsightListCardView.swift */; };
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3480CEA629DC02EA00649B6D /* SwiftUIImageViewer in Frameworks */,
 				34624F1029C1C11400518FB4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +309,7 @@
 			name = InsightCapture;
 			packageProductDependencies = (
 				34624F0F29C1C11400518FB4 /* SnapKit */,
+				3480CEA529DC02EA00649B6D /* SwiftUIImageViewer */,
 			);
 			productName = InsightCapture;
 			productReference = 346FAD8329B718B3004CEE9B /* InsightCapture.app */;
@@ -341,6 +344,7 @@
 			mainGroup = 346FAD7A29B718B3004CEE9B;
 			packageReferences = (
 				34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3480CEA429DC02EA00649B6D /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */,
 			);
 			productRefGroup = 346FAD8429B718B3004CEE9B /* Products */;
 			projectDirPath = "";
@@ -715,6 +719,14 @@
 				kind = branch;
 			};
 		};
+		3480CEA429DC02EA00649B6D /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fuzzzlove/swiftui-image-viewer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -727,6 +739,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 34624F0E29C1C11400518FB4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		3480CEA529DC02EA00649B6D /* SwiftUIImageViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3480CEA429DC02EA00649B6D /* XCRemoteSwiftPackageReference "swiftui-image-viewer" */;
+			productName = SwiftUIImageViewer;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -125,7 +125,7 @@ struct TopBar: View {
     
     
     @Binding var offset: CGFloat
-    @ObservedObject var viewModel: InsightPageViewModel
+    @StateObject var viewModel: InsightPageViewModel
     
     var body: some View {
         VStack{

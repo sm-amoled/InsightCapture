@@ -6,15 +6,38 @@
 //
 
 import SwiftUI
+import SwiftUIImageViewer
 
 struct ImageSourceView: View {
     @State var insight: InsightData
+    @State var isShowingImage: Bool = false
     
     var body: some View {
-        Image(uiImage: UIImage(data: insight.image!)!)
-            .resizable()
-            .scaledToFit()
-            .cornerRadius(18, corners: .allCorners)
+        Button {
+            isShowingImage = true
+        } label: {
+            Image(uiImage: UIImage(data: insight.image!)!)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(18, corners: .allCorners)
+        }
+        .navigationDestination(isPresented: $isShowingImage) {
+            SwiftUIImageViewer(image: Image(uiImage: UIImage(data: insight.image!)!))
+                .background(Color.black)
+                .navigationBarBackButtonHidden()
+                .toolbarBackground(.hidden, for: .navigationBar)
+                .edgesIgnoringSafeArea(.all)
+//                .preferredColorScheme(.dark)
+                .overlay(alignment: .topLeading) {
+                    Button {
+                        self.isShowingImage = false
+                    } label: {
+                        Label("", systemImage: "arrow.left")
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 16, weight: .bold))
+                    }
+                    .padding(.leading, 16)
+                }
+        }
     }
 }
-
