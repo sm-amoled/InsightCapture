@@ -150,6 +150,18 @@ class ShareViewController: UIViewController {
             if items.attributedContentText?.string != nil {
                 sourceType = .quote
                 quote = items.attributedContentText?.string ?? ""
+                
+                if URL(string: quote!) != nil {
+                    sourceType = .url
+                    self.setUrlSourceLayout()
+                    
+                    self.url = URL(string: quote!)
+                    self.fetchData(from: url as! URL)
+                    self.isShowingSourceViewIndicator = false
+                    
+                    return
+                }
+                
                 self.setQuoteSourceLayout()
                 return
             }
