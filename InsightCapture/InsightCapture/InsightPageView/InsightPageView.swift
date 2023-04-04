@@ -45,15 +45,20 @@ struct InsightPageView: View {
                     .zIndex(2)
                     
                     VStack {
-                        VStack {
+                        VStack(spacing: 24) {
+                            // 날짜
                             Text(viewModel.insight.createdDate?.toPageDateString() ?? "")
                                 .font(Font.system(size: 13, weight: .medium))
-                                .padding(.bottom, 24)
                             
+                            // 본문 컨텐츠
                             Text(viewModel.insight.text ?? "")
                                 .multilineTextAlignment(.center)
                                 .font(Font.system(size: 16, weight: .medium))
                             
+                            // 인사이트 source
+                            InsightSourceView(viewModel: viewModel)
+                            
+                            // 하단 여백
                             Spacer()
                                 .frame(height: 100)
                         }
@@ -76,11 +81,7 @@ struct InsightPageView: View {
                 }
                 .modifier(OffsetModifier(offset: $viewModel.offset))
             }
-            .background {
-                
-            }
         }
-        //        .background(Color.mint)
         .coordinateSpace(name: "SCROLL")
         .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
@@ -164,3 +165,4 @@ struct TopBar: View {
         return progress
     }
 }
+

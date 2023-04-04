@@ -29,7 +29,7 @@ class InsightPageViewModel: ObservableObject {
             image = UIImage(data: insight.image!)!
             
         case InsightType.url.rawValue:
-            getImageFromURL()
+            fetchImage(from: URL(string: insight.urlString ?? "")!)
             
         case InsightType.quote.rawValue:
             let _ = 0
@@ -59,19 +59,17 @@ class InsightPageViewModel: ObservableObject {
         return progress
     }
     
-    func getImageFromURL() {
+    func fetchImage(from url: URL) {
         let provider = LPMetadataProvider()
-        provider.startFetchingMetadata(for: URL(string: insight.urlString ?? "")!) { metaData, error in
-            if let error = error { return }
+        provider.startFetchingMetadata(for: url) { metaData, error in
+            if error == nil { return }
             guard let data = metaData else { return }
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else { return }
                 
                 if let image = image as? UIImage {
-                    DispatchQueue.main.async {
-                        self.image = image
-                    }
+                    self.image = image
                 } else {
                     print("no image available")
                 }

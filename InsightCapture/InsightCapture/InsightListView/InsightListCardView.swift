@@ -35,7 +35,7 @@ struct InsightListCardView: View {
                     case InsightType.image.rawValue:
                         ZStack {
                             if viewModel.insight.image == nil {
-                                Text("이미지 없음")
+                                // 이미지가 없는 경우
                             } else {
                                 Image(uiImage: UIImage(data: viewModel.insight.image!)!)
                                     .resizable()
@@ -92,6 +92,7 @@ struct InsightListCardView: View {
                             Rectangle()
                                 .foregroundColor(Color.randomColor(from: viewModel.insight.createdDate ?? Date()))
                                 .padding(.horizontal, 50)
+                                .padding(.vertical, 8)
                             
                             VStack {
                                 Image(systemName: "quote.opening")

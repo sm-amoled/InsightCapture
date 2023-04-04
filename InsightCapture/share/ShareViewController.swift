@@ -3,6 +3,7 @@ import LinkPresentation
 import Social
 import MobileCoreServices
 import UniformTypeIdentifiers
+import SwiftUI
 
 import SnapKit
 
@@ -11,7 +12,6 @@ class ShareViewController: UIViewController {
     // MARK: Properties
     var sourceType: InsightType = .brain
     
-    
     // source - name 으로 작명하였음
     var imageThumbnailImage: UIImage?
     
@@ -19,6 +19,8 @@ class ShareViewController: UIViewController {
     var urlThumbnailImage: UIImage?
     var urlTitle: String?
     var urlDescription: String?
+    
+    var quote: String?
     
     var isShowingSourceViewIndicator: Bool = false {
         willSet {
@@ -60,6 +62,7 @@ class ShareViewController: UIViewController {
     
     lazy var sourceView: UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor(Color.randomColor(from: Date()))
         view.clipsToBounds = true
         return view
     }()
@@ -91,7 +94,14 @@ class ShareViewController: UIViewController {
         return indicatorView
     }()
     
-    
+    lazy var quoteTextView: UILabel = {
+        let label = UILabel()
+        label.text = quote ?? ""
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.numberOfLines = 3
+        label.textAlignment = .center
+        return label
+    }()
     
     lazy var textFieldView: UIView = {
         let view = UIView()
@@ -135,8 +145,18 @@ class ShareViewController: UIViewController {
 
         // 가져온 데이터 중에서
         for items in extensionItems {
+            
+            // 만약 인용 이라면
+            if items.attributedContentText?.string != nil {
+                sourceType = .quote
+                quote = items.attributedContentText?.string ?? ""
+                self.setQuoteSourceLayout()
+                return
+            }
+            
             // NSItemProvider 배열에 담긴 여러 미디어 데이터 중에서
             if let itemProviders = items.attachments {
+                
                 // 미디어 데이터를 하나 확인해서
                 for itemProvider in itemProviders {
                     
@@ -263,6 +283,19 @@ extension ShareViewController {
         }
     }
     
+    func setQuoteSourceLayout() {
+        sourceView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.equalTo(124)
+        }
+        
+        sourceView.addSubview(quoteTextView)
+        quoteTextView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
     func setTextFieldLayout() {
         textFieldView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
@@ -337,7 +370,9 @@ extension ShareViewController {
         case .image:
             insight = .init(image: imageThumbnailImage!, text: descriptionTextField.text ?? "NO_CONTENT", title: titleTextField.text ?? "NO_TITLE")
         case .url:
-            insight = .init(url: url!, text: descriptionTextField.text!, title: titleTextField.text!)
+            insight = .init(url: url!, text: descriptionTextField.text!, title: titleTextField.text!, thumbnailImage: urlThumbnailImage)
+        case .quote:
+            insight = .init(quote: quote ?? "", text: descriptionTextField.text!, title: titleTextField.text!)
         default:
             insight = .init(text: descriptionTextField.text!, title: titleTextField.text!)
         }
