@@ -42,5 +42,8 @@ struct URLSourceView: View {
         .padding(.all, 8)
         .background(Color(uiColor: UIColor.systemGray5))
         .cornerRadius(10)
+        .onTapGesture {
+            UIApplication.shared.open(URL(string: insight.urlString ?? "")!)
+        }
     }
 }
