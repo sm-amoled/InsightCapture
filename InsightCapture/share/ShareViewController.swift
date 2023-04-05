@@ -146,26 +146,6 @@ class ShareViewController: UIViewController {
         // 가져온 데이터 중에서
         for items in extensionItems {
             
-            // 만약 인용 이라면
-            if items.attributedContentText?.string != nil {
-                sourceType = .quote
-                quote = items.attributedContentText?.string ?? ""
-                
-                if URL(string: quote!) != nil {
-                    sourceType = .url
-                    self.setUrlSourceLayout()
-                    
-                    self.url = URL(string: quote!)
-                    self.fetchData(from: url as! URL)
-                    self.isShowingSourceViewIndicator = false
-                    
-                    return
-                }
-                
-                self.setQuoteSourceLayout()
-                return
-            }
-            
             // NSItemProvider 배열에 담긴 여러 미디어 데이터 중에서
             if let itemProviders = items.attachments {
                 
@@ -199,10 +179,30 @@ class ShareViewController: UIViewController {
                         self.setUrlSourceLayout()
 
                         itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
-                            self.url = url as! URL
+                            self.url = url as? URL
                             
                             self.fetchData(from: url as! URL)
                             self.isShowingSourceViewIndicator = false
+                        }
+                    }
+                    
+                    if itemProvider.hasItemConformingToTypeIdentifier(UTType.text.identifier) {
+                        
+                        self.quote = items.attributedContentText?.string ?? "NO"
+
+                        if let url = URL(string: self.quote!) {
+                            sourceType = .url
+                            self.setUrlSourceLayout()
+
+                            self.url = url
+                            
+                            DispatchQueue.main.async {
+                                self.fetchData(from: url)
+                                self.isShowingSourceViewIndicator = false
+                            }
+                        } else {
+                            self.sourceType = .quote
+                            self.setQuoteSourceLayout()
                         }
                     }
                 }
