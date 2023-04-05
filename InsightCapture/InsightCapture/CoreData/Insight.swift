@@ -17,12 +17,13 @@ class Insight {
     public var image: Data?
     public var quote: String?
     
-    init(url: URL, text: String, title: String) {
+    init(url: URL, text: String, title: String, thumbnailImage: UIImage? = nil) {
         self.type = InsightType.url.rawValue
         self.text = text
         self.createdDate = Date()
         self.title = title
         self.urlString = url.absoluteString
+        self.image = thumbnailImage?.pngData()
     }
     
     init(image: UIImage, text: String, title: String) {
@@ -34,7 +35,7 @@ class Insight {
     }
     
     init(quote: String, text: String, title: String) {
-        self.type = InsightType.image.rawValue
+        self.type = InsightType.quote.rawValue
         self.createdDate = Date()
         self.title = title == "" ? "NO_title" : title
         self.text = text == "" ? "NO_Content" : text
