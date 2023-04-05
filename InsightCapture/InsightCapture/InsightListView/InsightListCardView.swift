@@ -40,6 +40,7 @@ struct InsightListCardView: View {
                             } else {
                                 Image(uiImage: UIImage(data: viewModel.insight.image!)!)
                                     .resizable()
+                                    .scaledToFill()
                                     .frame(width: UIScreen.main.bounds.size.width - 32 - 16, height: (UIScreen.main.bounds.size.width - 32 - 16) * 0.56)
                                     .cornerRadius(8)
                                     .clipped()
