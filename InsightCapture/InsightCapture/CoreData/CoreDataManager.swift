@@ -93,7 +93,7 @@ extension CoreDataManager {
         newInsight.createdDate = insight.createdDate
         
         newInsight.title = insight.title
-        newInsight.text = insight.text
+        newInsight.content = insight.content
         
         newInsight.urlString = insight.urlString
         newInsight.quote = insight.quote
