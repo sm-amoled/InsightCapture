@@ -380,13 +380,16 @@ extension ShareViewController {
         
         switch(sourceType) {
         case .image:
-            insight = .init(image: imageThumbnailImage!, content: descriptionTextField.text ?? "NO_CONTENT", title: titleTextField.text ?? "NO_TITLE")
+            insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
+                            image: imageThumbnailImage!)
         case .url:
-            insight = .init(url: url!, content: descriptionTextField.text!, title: titleTextField.text!, thumbnailImage: urlThumbnailImage)
+            insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
+                            url: url!, thumbnailImage: urlThumbnailImage!, urlTitle: urlTitle ?? "NO_TITLE")
         case .quote:
-            insight = .init(quote: quote ?? "", content: descriptionTextField.text!, title: titleTextField.text!)
+            insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
+                            quote: quote ?? "")
         default:
-            insight = .init(content: descriptionTextField.text!, title: titleTextField.text!)
+            insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT")
         }
         
         CoreDataManager.shared.createInsight(insight: insight)
