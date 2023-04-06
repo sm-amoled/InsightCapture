@@ -10,43 +10,48 @@ import Foundation
 
 class Insight {
     public var type: Int16
-    public var text: String?
+    public var content: String?
     public var createdDate: Date?
     public var title: String?
     public var urlString: String?
+    public var urlTitle: String?
     public var image: Data?
     public var quote: String?
     
-    init(url: URL, text: String, title: String, thumbnailImage: UIImage? = nil) {
+    init(title: String, content: String, url: URL, thumbnailImage: UIImage, urlTitle: String) {
         self.type = InsightType.url.rawValue
-        self.text = text
         self.createdDate = Date()
         self.title = title
+        self.content = content
+        
         self.urlString = url.absoluteString
-        self.image = thumbnailImage?.pngData()
+        self.urlTitle = urlTitle
+        self.image = thumbnailImage.pngData()
     }
     
-    init(image: UIImage, text: String, title: String) {
+    init(title: String, content: String, image: UIImage) {
         self.type = InsightType.image.rawValue
         self.createdDate = Date()
         self.title = title == "" ? "NO_title" : title
-        self.text = text == "" ? "NO_Content" : text
+        self.content = content == "" ? "NO_Content" : content
+        
         self.image = image.pngData()
     }
     
-    init(quote: String, text: String, title: String) {
+    init(title: String, content: String, quote: String) {
         self.type = InsightType.quote.rawValue
         self.createdDate = Date()
         self.title = title == "" ? "NO_title" : title
-        self.text = text == "" ? "NO_Content" : text
+        self.content = content == "" ? "NO_Content" : content
+        
         self.quote = quote
     }
     
-    init(text: String, title: String) {
+    init(title: String, content: String) {
         self.type = InsightType.brain.rawValue
         self.createdDate = Date()
         self.title = title == "" ? "NO_title" : title
-        self.text = text == "" ? "NO_Content" : text
+        self.content = content == "" ? "NO_Content" : content
     }
 }
 

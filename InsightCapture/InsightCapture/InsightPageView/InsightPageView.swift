@@ -51,7 +51,7 @@ struct InsightPageView: View {
                                 .font(Font.system(size: 13, weight: .medium))
                             
                             // 본문 컨텐츠
-                            Text(viewModel.insight.text ?? "")
+                            Text(viewModel.insight.content ?? "")
                                 .multilineTextAlignment(.center)
                                 .font(Font.system(size: 16, weight: .medium))
                             

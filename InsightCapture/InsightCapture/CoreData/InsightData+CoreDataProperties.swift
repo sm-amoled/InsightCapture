@@ -17,13 +17,13 @@ extension InsightData {
     }
 
     @NSManaged public var type: Int16
-    @NSManaged public var text: String?
+    @NSManaged public var content: String?
     @NSManaged public var createdDate: Date?
     @NSManaged public var title: String?
     @NSManaged public var urlString: String?
     @NSManaged public var image: Data?
     @NSManaged public var quote: String?
-
+    @NSManaged public var urlTitle: String?
 }
 
 extension InsightData : Identifiable {

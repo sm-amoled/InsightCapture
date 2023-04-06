@@ -128,7 +128,7 @@ struct InsightListCardView: View {
                         .padding(.horizontal, 12)
                         .padding(.bottom, 4)
                     
-                    Text(viewModel.insight.text!)
+                    Text(viewModel.insight.content!)
                         .font(Font.system(size: 16, weight: .medium))
                         .lineLimit(3)
                         .padding(.horizontal, 12)
