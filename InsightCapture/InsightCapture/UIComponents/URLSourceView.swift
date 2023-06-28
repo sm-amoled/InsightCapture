@@ -8,12 +8,27 @@
 import SwiftUI
 
 struct URLSourceView: View {
-    @State var insight: InsightData
+    
+    let image: UIImage?
+    let title: String
+    let urlString: String
+    
+    init(insight: InsightData) {
+        self.image = (insight.image != nil) ? UIImage(data: insight.image!) : nil
+        self.title = insight.title ?? ""
+        self.urlString = insight.urlString ?? ""
+    }
+    
+    init(image: UIImage, title: String, urlString: String) {
+        self.image = image
+        self.title = title
+        self.urlString = urlString
+    }
     
     var body: some View {
         HStack {
-            if insight.image != nil {
-                Image(uiImage: UIImage(data: insight.image!)!)
+            if image != nil {
+                Image(uiImage: image!)
                     .resizable()
                     .frame(width: 136, height: 76)
                     .clipped()
@@ -23,12 +38,12 @@ struct URLSourceView: View {
                     .frame(width: 136, height: 76)
             }
             VStack(alignment: .leading) {
-                Text(insight.title ?? "")
+                Text(title)
                     .font(Font.system(size: 15, weight: .bold))
                     .lineLimit(2)
                     .padding(.vertical, 2)
                 
-                Text(URLComponents(string: insight.urlString ?? "")?.host ?? "")
+                Text(URLComponents(string: urlString)?.host ?? "")
                     .font(Font.system(size: 12, weight: .light))
                     .lineLimit(1)
                     .foregroundColor(.gray)
@@ -43,7 +58,7 @@ struct URLSourceView: View {
         .background(Color(uiColor: UIColor.systemGray5))
         .cornerRadius(10)
         .onTapGesture {
-            UIApplication.shared.open(URL(string: insight.urlString ?? "")!)
+            UIApplication.shared.open(URL(string: urlString)!)
         }
     }
 }

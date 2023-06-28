@@ -46,7 +46,7 @@ class ShareViewController: UIViewController {
         let bar = UINavigationBar()
         bar.barStyle = .default
         
-        let item = UINavigationItem(title: "HELLOWORLD")
+        let item = UINavigationItem(title: "인사이트 기록")
         item.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(tapCancelButton))
         item.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(tapSaveButton))
         
