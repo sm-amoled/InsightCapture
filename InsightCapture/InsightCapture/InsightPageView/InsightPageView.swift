@@ -56,7 +56,7 @@ struct InsightPageView: View {
                                 .font(Font.system(size: 16, weight: .medium))
                             
                             // 인사이트 source
-                            InsightSourceView(viewModel: viewModel)
+                            InsightSourceView(insight: viewModel.insight)
                             
                             // 하단 여백
                             Spacer()

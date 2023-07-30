@@ -88,6 +88,10 @@ class ShareViewController: UIViewController {
         return view
     }()
     
+    lazy var sourceTextColumnView: UIView = {
+        return UIView()
+    }()
+    
     lazy var sourceIndicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView()
         indicatorView.style = .medium
@@ -261,34 +265,38 @@ extension ShareViewController {
         self.sourceView.layer.cornerRadius = 10
         
         sourceView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(8)
             $0.top.equalToSuperview().offset(12)
-            $0.height.equalTo(100)
+//            $0.height.equalTo(130)
         }
-        
+
         self.sourceView.addSubview(sourceImageView)
         sourceImageView.snp.makeConstraints {
-            $0.verticalEdges.left.equalToSuperview().inset(8)
-            $0.width.equalTo(sourceImageView.snp.height).multipliedBy(16.0/9.0)
+            $0.left.equalToSuperview().offset(12)
+            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.width.equalTo(136)
+            $0.height.equalTo(76)
+            $0.centerY.equalToSuperview()
+        }
+
+        self.sourceView.addSubview(sourceTextColumnView)
+        sourceTextColumnView.snp.makeConstraints {
+            $0.left.equalTo(sourceImageView.snp.right).offset(16)
+            $0.right.equalToSuperview().inset(16)
+            $0.verticalEdges.equalTo(sourceImageView)
         }
         
-        self.sourceView.addSubview(sourceTitleView)
+        self.sourceTextColumnView.addSubview(sourceTitleView)
         sourceTitleView.snp.makeConstraints {
-            $0.left.equalTo(sourceImageView.snp.right).offset(8)
-            $0.right.equalToSuperview().inset(8)
-            $0.top.equalToSuperview().inset(12)
-            $0.height.equalTo(40)
+            $0.horizontalEdges.equalToSuperview()
         }
-        
-        self.sourceView.addSubview(sourceDescriptionView)
+
+        self.sourceTextColumnView.addSubview(sourceDescriptionView)
         sourceDescriptionView.snp.makeConstraints {
-            $0.left.equalTo(sourceImageView.snp.right).offset(8)
-            $0.right.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(sourceTitleView.snp.bottom).offset(8)
-            $0.bottom.equalToSuperview().offset(-12)
-            $0.height.equalTo(20)
         }
-        
+
         self.sourceView.addSubview(sourceIndicatorView)
         sourceIndicatorView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -354,7 +362,7 @@ extension ShareViewController {
             guard let data = metaData else { return }
             
             self.urlTitle = data.title
-            self.urlDescription = data.value(forKey: "summary") as! String
+            self.urlDescription = data.value(forKey: "summary") as? String ?? ""
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else { return }
@@ -362,9 +370,10 @@ extension ShareViewController {
                 if let image = image as? UIImage {
                     // do something with image
                     self.urlThumbnailImage = image
+                    
                     DispatchQueue.main.async {
                         self.sourceTitleView.text = self.urlTitle
-                        self.sourceDescriptionView.text = self.urlDescription
+                        self.sourceDescriptionView.text = URLComponents(string: url.absoluteString)?.host
                         self.sourceImageView.image = self.urlThumbnailImage
                     }
                 } else {
@@ -384,7 +393,7 @@ extension ShareViewController {
                             image: imageThumbnailImage!)
         case .url:
             insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
-                            url: url!, thumbnailImage: urlThumbnailImage!, urlTitle: urlTitle ?? "NO_TITLE")
+                            url: url!, thumbnailImage: urlThumbnailImage!, urlTitle: sourceTitleView.text ?? "NO_TITLE")
         case .quote:
             insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
                             quote: quote ?? "")

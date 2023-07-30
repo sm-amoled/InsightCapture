@@ -10,18 +10,18 @@ import SwiftUI
 struct URLSourceView: View {
     
     let image: UIImage?
-    let title: String
+    let urlTitle: String
     let urlString: String
     
     init(insight: InsightData) {
         self.image = (insight.image != nil) ? UIImage(data: insight.image!) : nil
-        self.title = insight.title ?? ""
+        self.urlTitle = insight.urlTitle ?? ""
         self.urlString = insight.urlString ?? ""
     }
     
-    init(image: UIImage, title: String, urlString: String) {
+    init(image: UIImage, urlTitle: String, urlString: String) {
         self.image = image
-        self.title = title
+        self.urlTitle = urlTitle
         self.urlString = urlString
     }
     
@@ -38,7 +38,7 @@ struct URLSourceView: View {
                     .frame(width: 136, height: 76)
             }
             VStack(alignment: .leading) {
-                Text(title)
+                Text(urlTitle)
                     .font(Font.system(size: 15, weight: .bold))
                     .lineLimit(2)
                     .padding(.vertical, 2)
@@ -46,7 +46,7 @@ struct URLSourceView: View {
                 Text(URLComponents(string: urlString)?.host ?? "")
                     .font(Font.system(size: 12, weight: .light))
                     .lineLimit(1)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(uiColor: UIColor.systemGray))
                 
                 HStack {
                     Spacer()

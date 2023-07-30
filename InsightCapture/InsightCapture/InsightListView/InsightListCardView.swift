@@ -50,42 +50,8 @@ struct InsightListCardView: View {
                         
                     case InsightType.url.rawValue:
                         ZStack {
-                            HStack {
-                                if viewModel.urlImage != nil {
-                                    Image(uiImage: viewModel.urlImage!)
-                                        .resizable()
-                                        .frame(width: 136, height: 76)
-                                        .clipped()
-                                } else {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 136, height: 76)
-                                }
-                                
-                                VStack(alignment: .leading) {
-                                    Text(viewModel.urlTitle ?? "")
-                                        .font(Font.system(size: 15, weight: .bold))
-                                        .lineLimit(2)
-                                        .padding(.vertical, 2)
-                                    
-                                    Text(viewModel.urlDescription ?? "")
-                                        .font(Font.system(size: 12, weight: .light))
-                                        .lineLimit(1)
-                                        .foregroundColor(.gray)
-                                    
-                                    HStack {
-                                        Spacer()
-                                    }
-                                }
-                                .padding(.horizontal, 3)
-                            }
-                            .padding(.all, 8)
-                            .background(Color(uiColor: UIColor.systemGray5))
-                            .cornerRadius(10)
-                            
-                            if viewModel.urlImage == nil {
-                                ProgressView()
-                            }
+                            URLSourceView(insight: viewModel.insight)
+                                .disabled(true)
                         }
                         .padding(.horizontal, 8)
                         
@@ -129,7 +95,7 @@ struct InsightListCardView: View {
                         .padding(.bottom, 4)
                     
                     Text(viewModel.insight.content!)
-                        .font(Font.system(size: 16, weight: .medium))
+                        .font(Font.system(size: 16, weight: .regular))
                         .lineLimit(3)
                         .padding(.horizontal, 12)
                         .padding(.bottom, 16)
@@ -137,7 +103,7 @@ struct InsightListCardView: View {
                     HStack {
                         Spacer()
                         Text("자세히 보기")
-                            .font(Font.system(size: 13, weight: .medium))
+                            .font(Font.system(size: 13, weight: .light))
                     }
                     .padding(.horizontal, 12)
                     .padding(.bottom, 16)
