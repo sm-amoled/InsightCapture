@@ -29,6 +29,9 @@ struct InsightListView: View {
                     }
                 }
                 .scrollIndicators(.hidden)
+                .refreshable {
+                    await viewModel.getInsightList()
+                }
                 
                 ZStack {
                     HStack(spacing: 8) {
