@@ -20,6 +20,21 @@ struct InsightListView: View {
                     .foregroundColor(Color(uiColor: UIColor.systemGray5))
                     .edgesIgnoringSafeArea(.vertical)
                 
+                if viewModel.insightList.isEmpty {
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Text("일상 속에서 마주치는\n반짝이는 생각들을 캐치해\n소중한 기록으로 남겨보세요")
+                                .font(Font.system(size: 24, weight: .thin))
+                                .lineSpacing(6)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                        Spacer()
+                        
+                    }
+                }
+                
                 ScrollView {
                     Spacer()
                         .frame(height: 50)
@@ -30,7 +45,7 @@ struct InsightListView: View {
                 }
                 .scrollIndicators(.hidden)
                 .refreshable {
-                    await viewModel.getInsightList()
+                    viewModel.getInsightList()
                 }
                 
                 ZStack {
