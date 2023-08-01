@@ -39,6 +39,9 @@ class ShareViewController: UIViewController {
         view.backgroundColor = .systemGray6
         view.layer.cornerRadius = 15
         view.clipsToBounds =  true
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapBackground)))
+        
         return view
     }()
     
@@ -46,7 +49,7 @@ class ShareViewController: UIViewController {
         let bar = UINavigationBar()
         bar.barStyle = .default
         
-        let item = UINavigationItem(title: "HELLOWORLD")
+        let item = UINavigationItem(title: "인사이트 기록")
         item.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(tapCancelButton))
         item.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(tapSaveButton))
         
@@ -88,6 +91,10 @@ class ShareViewController: UIViewController {
         return view
     }()
     
+    lazy var sourceTextColumnView: UIView = {
+        return UIView()
+    }()
+    
     lazy var sourceIndicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView()
         indicatorView.style = .medium
@@ -108,6 +115,11 @@ class ShareViewController: UIViewController {
         return view
     }()
     
+    //    lazy var textFieldScrollView: UIScrollView = {
+    //        let view = UIScrollView()
+    //        view.
+    //    }()
+    
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "제목"
@@ -123,26 +135,36 @@ class ShareViewController: UIViewController {
     }()
     
     let textViewPlaceHolder: String = "내용"
+    
     lazy var descriptionTextField: UITextView = {
         let textField = UITextView()
         textField.text = textViewPlaceHolder
         textField.textColor = .systemGray2
         textField.backgroundColor = .clear
         textField.font = .systemFont(ofSize: 16, weight: .medium)
-        textField.textContainerInset = .zero
-        textField.textContainer.lineFragmentPadding = 0
+        
+        textField.textContainerInset.bottom = 20
+        textField.textContainerInset.left = 4
+        textField.textContainerInset.right = 4
+        textField.textContainer.lineFragmentPadding = 3
+        
+        textField.keyboardDismissMode = .onDrag
         textField.delegate = self
+        textField.autocorrectionType = .no
+        
+        
         return textField
     }()
     
     override func viewDidLoad() {
         setLayout()
+        setUpNotification()
         
         // MARK: Data 가져오기
         
         let extensionItems = extensionContext?.inputItems as! [NSExtensionItem]
         isShowingSourceViewIndicator = true
-
+        
         // 가져온 데이터 중에서
         for items in extensionItems {
             
@@ -177,7 +199,7 @@ class ShareViewController: UIViewController {
                         
                         sourceType = .url
                         self.setUrlSourceLayout()
-
+                        
                         itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
                             self.url = url as? URL
                             
@@ -189,11 +211,11 @@ class ShareViewController: UIViewController {
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.text.identifier) {
                         
                         self.quote = items.attributedContentText?.string ?? "NO"
-
+                        
                         if let url = URL(string: self.quote!) {
                             sourceType = .url
                             self.setUrlSourceLayout()
-
+                            
                             self.url = url
                             
                             DispatchQueue.main.async {
@@ -229,6 +251,7 @@ extension ShareViewController {
         contentView.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalToSuperview()
             $0.top.equalTo(navigationBar.snp.bottom)
+//            $0.bottom.equalToSuperview().inset(20)
         }
         
         self.contentView.addSubview(sourceView)
@@ -261,32 +284,36 @@ extension ShareViewController {
         self.sourceView.layer.cornerRadius = 10
         
         sourceView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(8)
             $0.top.equalToSuperview().offset(12)
-            $0.height.equalTo(100)
+            //            $0.height.equalTo(130)
         }
         
         self.sourceView.addSubview(sourceImageView)
         sourceImageView.snp.makeConstraints {
-            $0.verticalEdges.left.equalToSuperview().inset(8)
-            $0.width.equalTo(sourceImageView.snp.height).multipliedBy(16.0/9.0)
+            $0.left.equalToSuperview().offset(12)
+            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.width.equalTo(136)
+            $0.height.equalTo(76)
+            $0.centerY.equalToSuperview()
         }
         
-        self.sourceView.addSubview(sourceTitleView)
+        self.sourceView.addSubview(sourceTextColumnView)
+        sourceTextColumnView.snp.makeConstraints {
+            $0.left.equalTo(sourceImageView.snp.right).offset(16)
+            $0.right.equalToSuperview().inset(16)
+            $0.verticalEdges.equalTo(sourceImageView)
+        }
+        
+        self.sourceTextColumnView.addSubview(sourceTitleView)
         sourceTitleView.snp.makeConstraints {
-            $0.left.equalTo(sourceImageView.snp.right).offset(8)
-            $0.right.equalToSuperview().inset(8)
-            $0.top.equalToSuperview().inset(12)
-            $0.height.equalTo(40)
+            $0.horizontalEdges.equalToSuperview()
         }
         
-        self.sourceView.addSubview(sourceDescriptionView)
+        self.sourceTextColumnView.addSubview(sourceDescriptionView)
         sourceDescriptionView.snp.makeConstraints {
-            $0.left.equalTo(sourceImageView.snp.right).offset(8)
-            $0.right.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(sourceTitleView.snp.bottom).offset(8)
-            $0.bottom.equalToSuperview().offset(-12)
-            $0.height.equalTo(20)
         }
         
         self.sourceView.addSubview(sourceIndicatorView)
@@ -310,9 +337,9 @@ extension ShareViewController {
     
     func setTextFieldLayout() {
         textFieldView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(12)
             $0.top.equalTo(sourceView.snp.bottom).offset(16)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         self.textFieldView.addSubview(titleTextField)
@@ -354,7 +381,7 @@ extension ShareViewController {
             guard let data = metaData else { return }
             
             self.urlTitle = data.title
-            self.urlDescription = data.value(forKey: "summary") as! String
+            self.urlDescription = data.value(forKey: "summary") as? String ?? ""
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else { return }
@@ -362,9 +389,10 @@ extension ShareViewController {
                 if let image = image as? UIImage {
                     // do something with image
                     self.urlThumbnailImage = image
+                    
                     DispatchQueue.main.async {
                         self.sourceTitleView.text = self.urlTitle
-                        self.sourceDescriptionView.text = self.urlDescription
+                        self.sourceDescriptionView.text = URLComponents(string: url.absoluteString)?.host
                         self.sourceImageView.image = self.urlThumbnailImage
                     }
                 } else {
@@ -384,7 +412,7 @@ extension ShareViewController {
                             image: imageThumbnailImage!)
         case .url:
             insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
-                            url: url!, thumbnailImage: urlThumbnailImage!, urlTitle: urlTitle ?? "NO_TITLE")
+                            url: url!, thumbnailImage: urlThumbnailImage!, urlTitle: sourceTitleView.text ?? "NO_TITLE")
         case .quote:
             insight = .init(title: titleTextField.text ?? "NO_TITLE", content: descriptionTextField.text ?? "NO_CONTENT",
                             quote: quote ?? "")
@@ -415,5 +443,40 @@ extension ShareViewController: UITextViewDelegate {
             textView.text = textViewPlaceHolder
             textView.textColor = .systemGray3
         }
+    }
+}
+
+extension ShareViewController {
+    @objc
+    func tapBackground() {
+        self.view.endEditing(true)
+    }
+    
+    private func setUpNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            UIView.animate(withDuration: 1) {
+                self.descriptionTextField.contentInset.bottom = keyboardHeight
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        
+        UIView.animate(withDuration: 1) {
+            self.descriptionTextField.contentInset = UIEdgeInsets.zero
+        }
+//        self.titleTextField.endEditing(true)
+//        self.descriptionTextField.endEditing(true)
     }
 }

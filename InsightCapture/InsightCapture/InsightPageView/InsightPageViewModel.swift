@@ -26,10 +26,12 @@ class InsightPageViewModel: ObservableObject {
         
         switch(insight.type) {
         case InsightType.image.rawValue:
-            image = UIImage(data: insight.image!)!
+            guard let contentImage = insight.image else { return }
+            image = UIImage(data: contentImage)!
             
         case InsightType.url.rawValue:
-            fetchImage(from: URL(string: insight.urlString ?? "")!)
+            guard let contentImage = insight.image else { return }
+            image = UIImage(data: contentImage)!
             
         case InsightType.quote.rawValue:
             let _ = 0

@@ -239,6 +239,7 @@
 				3480CE9829DA941800649B6D /* URLSourceView.swift */,
 				3480CE9A29DABFC000649B6D /* QuoteSourceView.swift */,
 				3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */,
+				3480CE9629DA85F300649B6D /* InsightSourceView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -264,7 +265,6 @@
 			children = (
 				34C8FDA729D31C1C003401CE /* InsightPageView.swift */,
 				34C8FDA929D31C26003401CE /* InsightPageViewModel.swift */,
-				3480CE9629DA85F300649B6D /* InsightSourceView.swift */,
 			);
 			path = InsightPageView;
 			sourceTree = "<group>";

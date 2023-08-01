@@ -95,6 +95,7 @@ extension CoreDataManager {
         newInsight.title = insight.title
         newInsight.content = insight.content
         
+        newInsight.urlTitle = insight.urlTitle
         newInsight.urlString = insight.urlString
         newInsight.quote = insight.quote
         newInsight.image = insight.image

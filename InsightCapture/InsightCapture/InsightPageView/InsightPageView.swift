@@ -56,7 +56,7 @@ struct InsightPageView: View {
                                 .font(Font.system(size: 16, weight: .medium))
                             
                             // 인사이트 source
-                            InsightSourceView(viewModel: viewModel)
+                            InsightSourceView(insight: viewModel.insight)
                             
                             // 하단 여백
                             Spacer()
@@ -160,6 +160,7 @@ struct TopBar: View {
                             .cornerRadius(60, corners: [.topLeft, .topRight])
                             .foregroundColor(.white)
                             .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+                            .shadow(radius: 4, y: -6)
                     }
                 }
             }
