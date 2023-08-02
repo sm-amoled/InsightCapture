@@ -33,6 +33,8 @@ class InsightListViewModel: ObservableObject {
     
     func showAddInsightView() {
         isShowingAddCategorySheet = false
-        isShowingAddInsightView = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isShowingAddInsightView = true
+        }
     }
 }

@@ -11,6 +11,8 @@ import LinkPresentation
 struct InsightListView: View {
     
     @StateObject var viewModel = InsightListViewModel()
+    @StateObject var addInsightViewModel = AddInsightViewModel()
+    
     @State var boo = false
     
     var body: some View {
@@ -126,8 +128,11 @@ struct InsightListView: View {
                 .navigationDestination(isPresented: $viewModel.isShowingMyPageView) {
                     MyPageView()
                 }
-                .navigationDestination(isPresented: $viewModel.isShowingAddInsightView) {
-                    AddInsightView()
+//                .navigationDestination(isPresented: $viewModel.isShowingAddInsightView) {
+//                    AddInsightView(viewModel: addInsightViewModel)
+//                }
+                .fullScreenCover(isPresented: $viewModel.isShowingAddInsightView) {
+                    AddInsightView(viewModel: addInsightViewModel)
                 }
             }
         }
