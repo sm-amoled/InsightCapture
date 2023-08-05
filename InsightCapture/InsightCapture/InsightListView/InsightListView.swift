@@ -11,7 +11,7 @@ import LinkPresentation
 struct InsightListView: View {
     
     @StateObject var viewModel = InsightListViewModel()
-    @StateObject var addInsightViewModel = AddInsightViewModel()
+//    @StateObject var addInsightViewModel = AddInsightViewModel(sourceType: <#InsightType#>)
     
     @State var boo = false
     
@@ -96,28 +96,28 @@ struct InsightListView: View {
                             // 카테고리 선택 버튼
                             VStack {
                                 Button {
-                                    viewModel.showAddInsightView()
+                                    viewModel.showAddInsightView(of: .url)
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "link", title: "URL 주소", description: "유튜브, 인스타그램, 웹사이트 등에서 발견한 영감")
                                 }
                                 
                                 Button {
-                                    viewModel.showAddInsightView()
+                                    viewModel.showAddInsightView(of: .image)
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "photo.on.rectangle.angled", title: "사진", description: "생활 속 장면에서 마주친 영감")
                                 }
                                 
                                 Button {
-                                    viewModel.showAddInsightView()
+                                    viewModel.showAddInsightView(of: .quote)
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "quote.opening", title: "인용", description: "글과 카피 속에서 발견한 영감")
                                 }
                                 Button {
-                                    viewModel.showAddInsightView()
+                                    viewModel.showAddInsightView(of: .brain)
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "brain", title: "나의 생각", description: "번뜩이는 나의 영감")
                                 }
-                                
+
                                 Spacer()
                             }
                             .padding(.horizontal, 16)
@@ -128,11 +128,11 @@ struct InsightListView: View {
                 .navigationDestination(isPresented: $viewModel.isShowingMyPageView) {
                     MyPageView()
                 }
-//                .navigationDestination(isPresented: $viewModel.isShowingAddInsightView) {
-//                    AddInsightView(viewModel: addInsightViewModel)
-//                }
                 .fullScreenCover(isPresented: $viewModel.isShowingAddInsightView) {
-                    AddInsightView(viewModel: addInsightViewModel)
+                    AddInsightView(viewModel: AddInsightViewModel(sourceType: viewModel.selectedCategory))
+                        .onDisappear {
+                            viewModel.getInsightList()
+                        }
                 }
             }
         }

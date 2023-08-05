@@ -18,7 +18,7 @@ class Insight {
     public var image: Data?
     public var quote: String?
     
-    init(title: String, content: String, url: URL, thumbnailImage: UIImage, urlTitle: String) {
+    init(title: String, content: String, url: URL, thumbnailImage: UIImage?, urlTitle: String) {
         self.type = InsightType.url.rawValue
         self.createdDate = Date()
         self.title = title
@@ -26,16 +26,16 @@ class Insight {
         
         self.urlString = url.absoluteString
         self.urlTitle = urlTitle
-        self.image = thumbnailImage.pngData()
+        self.image = thumbnailImage?.pngData() ?? UIImage(systemName: "square.split.diagonal.2x2")?.pngData()
     }
     
-    init(title: String, content: String, image: UIImage) {
+    init(title: String, content: String, image: UIImage?) {
         self.type = InsightType.image.rawValue
         self.createdDate = Date()
         self.title = title == "" ? "NO_title" : title
         self.content = content == "" ? "NO_Content" : content
         
-        self.image = image.pngData()
+        self.image = image?.pngData() ?? UIImage(systemName: "square.split.diagonal.2x2")?.pngData()
     }
     
     init(title: String, content: String, quote: String) {
