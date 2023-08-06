@@ -15,17 +15,17 @@ class AddInsightViewModel: ObservableObject {
     
     @Published var sourceType: InsightType
     
-    // URL
+    
     @Published var sourceUrl = ""
     @Published var sourceImage: UIImage? = nil
     @Published var sourceTitle = ""
+    @Published var sourceQuote = ""
     
-    @Published var isSourceContentLoaded = false
-    
-    // Image
+    // Photo Picker
     @Published var isImagePickerPresented = false
     @Published var selectedImage: UIImage?
-    
+
+    @Published var isSourceContentLoaded = false
     @Published var isFetchingData = false
     
     
@@ -39,7 +39,7 @@ class AddInsightViewModel: ObservableObject {
         print("Fetch Start")
         isFetchingData = true
         
-        let result = fetchData(from: url) { result in
+        let _ = fetchData(from: url) { result in
             DispatchQueue.main.async {
                 self.isFetchingData = false
                 
@@ -55,7 +55,7 @@ class AddInsightViewModel: ObservableObject {
     }
     
     func tapImageLoadButton() {
-        
+        isImagePickerPresented.toggle()
     }
     
     func tapSaveButton() {
@@ -78,10 +78,10 @@ class AddInsightViewModel: ObservableObject {
                             url: url, thumbnailImage: sourceImage, urlTitle: sourceTitle)
             
         case .quote:
-            print("save with Quote Source")
+            insight = .init(title: inputTitle, content: inputContent, quote: sourceQuote)
             
-        default:
-            print("save with Think Source")
+        case .brain:
+            insight = .init(title: inputTitle, content: inputContent)
             
         }
         

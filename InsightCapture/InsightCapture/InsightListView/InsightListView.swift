@@ -9,9 +9,7 @@ import SwiftUI
 import LinkPresentation
 
 struct InsightListView: View {
-    
     @StateObject var viewModel = InsightListViewModel()
-//    @StateObject var addInsightViewModel = AddInsightViewModel(sourceType: <#InsightType#>)
     
     @State var boo = false
     

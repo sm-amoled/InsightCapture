@@ -20,7 +20,6 @@ struct AddInsightView: View {
                 VStack{
                     VStack {
                         ZStack {
-                            
                             HStack {
                                 switch(viewModel.sourceType) {
                                 case .url:
@@ -52,7 +51,8 @@ struct AddInsightView: View {
                                                 }
                                                 .foregroundColor(.black)
                                             }
-                                        } else {
+                                        }
+                                        else {
                                             ZStack(alignment: .bottomTrailing) {
                                                 URLSourceView(image: viewModel.sourceImage!,
                                                               urlTitle: viewModel.sourceTitle,
@@ -75,10 +75,11 @@ struct AddInsightView: View {
                                         RoundedRectangle(cornerRadius: 10)
                                             .foregroundColor(Color(uiColor: UIColor(hex: "#F2F2F2")!))
                                     }
+                                    
                                 case .image:
                                     if !viewModel.isSourceContentLoaded {
                                         Button {
-                                            viewModel.isImagePickerPresented.toggle()
+                                            viewModel.tapImageLoadButton()
                                         } label : {
                                             HStack {
                                                 Spacer()
@@ -95,7 +96,8 @@ struct AddInsightView: View {
                                                     .foregroundColor(Color(uiColor: UIColor(hex: "#F2F2F2")!))
                                             }
                                         }
-                                    } else {
+                                    }
+                                    else {
                                         ZStack(alignment: .bottomTrailing) {
                                             Image(uiImage: viewModel.sourceImage!)
                                                 .resizable()
@@ -114,77 +116,108 @@ struct AddInsightView: View {
                                             .padding(.all, 8)
                                         }
                                     }
-                                default :
-                                    Text("Default")
+                                    
+                                case .quote:
+                                    HStack(alignment: .center) {
+                                        TextField("", text: $viewModel.sourceQuote, axis: .vertical)
+                                            .multilineTextAlignment(.leading)
+                                            .lineLimit(4)
+                                            .placeholder(when: viewModel.sourceQuote.isEmpty) {
+                                                Text("인용구를 붙여넣어주세요.")
+                                                    .foregroundColor(.gray)
+                                            }
+                                        
+                                        Button {
+                                            if let read = UIPasteboard.general.string {
+                                                if !read.isEmpty {
+                                                    viewModel.sourceQuote = read  // <-- here
+                                                } else {
+                                                    print("복사된 텍스트가 없음")
+                                                }
+                                            }
+                                        } label: {
+                                            Image(systemName: "doc.on.clipboard")
+                                        }
+                                        .foregroundColor(.black)
+                                    }
+                                    .padding(12)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundColor(Color(uiColor: UIColor(hex: "#F2F2F2")!))
+                                    }
+                                    
+                                case .brain:
+                                    ZStack{}
                                 }
                             }
+                            .padding(.horizontal, 16)
                             
-                            
-                        }
-                        .padding(.horizontal, 16)
-                        //                        .padding(.top, 8)
-                        
-                        VStack (spacing: 4) {
-                            TextField("", text: $viewModel.inputTitle)
-                                .placeholder(when: viewModel.inputTitle.isEmpty) {
-                                    Text("제목")
-                                        .font(Font.system(size: 15, weight: .medium))
-                                        .foregroundColor(.gray)
-                                }
-                                .font(Font.system(size: 15, weight: .medium))
-                                .padding(.bottom, 4)
-                            
-                            Divider()
-                            
-                            
-                            TextEditor(text: $viewModel.inputContent)
-                                .scrollContentBackground(.hidden)
-                                .offset(x: -5)
-                                .placeholder(when: viewModel.inputContent.isEmpty) {
-                                    VStack{
-                                        Text("내용")
+                            VStack (spacing: 4) {
+                                TextField("", text: $viewModel.inputTitle)
+                                    .placeholder(when: viewModel.inputTitle.isEmpty) {
+                                        Text("제목")
                                             .font(Font.system(size: 15, weight: .medium))
                                             .foregroundColor(.gray)
-                                        Spacer()
                                     }
-                                    .offset(y: 8)
-                                }
-                                .font(Font.system(size: 15, weight: .medium))
+                                    .font(Font.system(size: 15, weight: .medium))
+                                    .padding(.bottom, 4)
+                                
+                                Divider()
+                                
+                                
+                                TextEditor(text: $viewModel.inputContent)
+                                    .scrollContentBackground(.hidden)
+                                    .offset(x: -5)
+                                    .placeholder(when: viewModel.inputContent.isEmpty) {
+                                        VStack{
+                                            Text("내용")
+                                                .font(Font.system(size: 15, weight: .medium))
+                                                .foregroundColor(.gray)
+                                            Spacer()
+                                        }
+                                        .offset(y: 8)
+                                    }
+                                    .font(Font.system(size: 15, weight: .medium))
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.top, 8)
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.top, 8)
                     }
                 }
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+                .navigationTitle(Text("인사이트 남기기"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            print("Press X Mark")
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                        }
+                        .foregroundColor(.black)
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            viewModel.tapSaveButton()
+                            dismiss()
+                        } label: {
+                            Text("저장")
+                        }
+                        .foregroundColor(.black)
+                    }
+                }
+                .sheet(isPresented: $viewModel.isImagePickerPresented,
+                       content: {
+                    ImagePicker(image: $viewModel.selectedImage)
+                        .onDisappear {
+                            viewModel.loadImage()
+                        }
+                })
             }
-            .navigationTitle(Text("인사이트 남기기"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        print("Press X Mark")
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .foregroundColor(.black)
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.tapSaveButton()
-                        dismiss()
-                    } label: {
-                        Text("저장")
-                    }
-                    .foregroundColor(.black)
-                }
-            }
-            .sheet(isPresented: $viewModel.isImagePickerPresented,
-                   content: { ImagePicker(image: $viewModel.selectedImage)
-                    .onDisappear {
-                        viewModel.loadImage()
-                    }
-            })
         }
     }
 }
