@@ -37,7 +37,7 @@ class InsightListCardViewModel: ObservableObject  {
                     
                     DispatchQueue.main.async {
                         self.urlTitle = data.title
-                        self.urlDescription = (data.value(forKey: "summary") as! String)
+//                        self.urlDescription = (data.value(forKey: "summary") as! String)
                         self.urlImage = (image as! UIImage)
                     }
                 })

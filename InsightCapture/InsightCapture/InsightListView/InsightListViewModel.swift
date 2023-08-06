@@ -15,6 +15,8 @@ class InsightListViewModel: ObservableObject {
     @Published var isShowingMyPageView: Bool = false
     @Published var isShowingAddInsightView: Bool = false
     
+    var selectedCategory: InsightType = .brain
+    
     init() {
         getInsightList()
     }
@@ -31,8 +33,12 @@ class InsightListViewModel: ObservableObject {
         isShowingMyPageView = true
     }
     
-    func showAddInsightView() {
+    func showAddInsightView(of selectedCategory: InsightType) {
+        self.selectedCategory = selectedCategory
         isShowingAddCategorySheet = false
-        isShowingAddInsightView = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isShowingAddInsightView = true
+        }
     }
 }

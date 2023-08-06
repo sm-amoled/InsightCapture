@@ -25,6 +25,8 @@
 		34624F5329CEDD9E00518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F5229CEDD9E00518FB4 /* Insight.swift */; };
 		34624F5429CEDF7600518FB4 /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F5229CEDD9E00518FB4 /* Insight.swift */; };
 		34624F5C29D1335800518FB4 /* InsightListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34624F5B29D1335800518FB4 /* InsightListView.swift */; };
+		346E9F312A78D7C900FD61DD /* AddInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346E9F302A78D7C900FD61DD /* AddInsightViewModel.swift */; };
+		346E9F352A7E178800FD61DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346E9F342A7E178800FD61DD /* ImagePicker.swift */; };
 		346FAD8729B718B3004CEE9B /* InsightCaptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */; };
 		346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FAD8829B718B3004CEE9B /* ContentView.swift */; };
 		346FAD8B29B718B4004CEE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346FAD8A29B718B4004CEE9B /* Assets.xcassets */; };
@@ -88,6 +90,8 @@
 		34624F4F29CCA29500518FB4 /* share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = share.entitlements; sourceTree = "<group>"; };
 		34624F5229CEDD9E00518FB4 /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
 		34624F5B29D1335800518FB4 /* InsightListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightListView.swift; sourceTree = "<group>"; };
+		346E9F302A78D7C900FD61DD /* AddInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsightViewModel.swift; sourceTree = "<group>"; };
+		346E9F342A7E178800FD61DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		346FAD8329B718B3004CEE9B /* InsightCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightCaptureApp.swift; sourceTree = "<group>"; };
 		346FAD8829B718B3004CEE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				3480CE9A29DABFC000649B6D /* QuoteSourceView.swift */,
 				3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */,
 				3480CE9629DA85F300649B6D /* InsightSourceView.swift */,
+				346E9F342A7E178800FD61DD /* ImagePicker.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				34C8FDA429D30CE3003401CE /* AddInsightView.swift */,
+				346E9F302A78D7C900FD61DD /* AddInsightViewModel.swift */,
 			);
 			path = AddInsightView;
 			sourceTree = "<group>";
@@ -399,10 +405,12 @@
 				34C8FD9729D26CA7003401CE /* Date+.swift in Sources */,
 				34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */,
 				3480CE9B29DABFC000649B6D /* QuoteSourceView.swift in Sources */,
+				346E9F352A7E178800FD61DD /* ImagePicker.swift in Sources */,
 				34624F4A29CCA13D00518FB4 /* InsightData+CoreDataProperties.swift in Sources */,
 				34C8FDAA29D31C26003401CE /* InsightPageViewModel.swift in Sources */,
 				34C8FDB029D42FFF003401CE /* View+.swift in Sources */,
 				34C8FDAC29D40D79003401CE /* OffsetModifier.swift in Sources */,
+				346E9F312A78D7C900FD61DD /* AddInsightViewModel.swift in Sources */,
 				34C8FDA229D30226003401CE /* MyPageView.swift in Sources */,
 				34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */,
 				34624F4929CCA13D00518FB4 /* InsightData+CoreDataClass.swift in Sources */,
