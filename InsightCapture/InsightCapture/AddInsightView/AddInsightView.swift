@@ -19,37 +19,43 @@ struct AddInsightView: View {
             ZStack {
                 VStack{
                     VStack {
-                        ZStack {
                             HStack {
                                 switch(viewModel.sourceType) {
                                 case .url:
                                     ZStack {
                                         if !viewModel.isSourceContentLoaded {
-                                            TextField("", text: $viewModel.sourceUrl)
-                                                .placeholder(when: viewModel.sourceUrl.isEmpty) {
-                                                    Text("URL을 붙여넣어주세요.")
-                                                        .foregroundColor(.gray)
-                                                    
-                                                }
-                                                .onChange(of: viewModel.sourceUrl) { newValue in
-                                                    viewModel.checkUrlInput()
-                                                }
-                                            
-                                            if viewModel.isFetchingData {
-                                                ProgressView().frame(width: 16, height: 16)
-                                            } else {
-                                                Button {
-                                                    if let read = UIPasteboard.general.string {
-                                                        if !read.isEmpty {
-                                                            viewModel.sourceUrl = read  // <-- here
-                                                        } else {
-                                                            print("복사된 텍스트가 없음")
-                                                        }
+                                            HStack {
+                                                TextField("", text: $viewModel.sourceUrl)
+                                                    .placeholder(when: viewModel.sourceUrl.isEmpty) {
+                                                        Text("URL을 붙여넣어주세요.")
+                                                            .foregroundColor(.gray)
+                                                        
                                                     }
-                                                } label: {
-                                                    Image(systemName: "doc.on.clipboard")
+                                                    .onChange(of: viewModel.sourceUrl) { newValue in
+                                                        viewModel.checkUrlInput()
+                                                    }
+                                                
+                                                if viewModel.isFetchingData {
+                                                    ProgressView().frame(width: 16, height: 16)
+                                                } else {
+                                                    Button {
+                                                        if let read = UIPasteboard.general.string {
+                                                            if !read.isEmpty {
+                                                                viewModel.sourceUrl = read  // <-- here
+                                                            } else {
+                                                                print("복사된 텍스트가 없음")
+                                                            }
+                                                        }
+                                                    } label: {
+                                                        Image(systemName: "doc.on.clipboard")
+                                                    }
+                                                    .foregroundColor(.black)
                                                 }
-                                                .foregroundColor(.black)
+                                            }
+                                            .padding(12)
+                                            .background {
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .foregroundColor(Color(uiColor: UIColor(hex: "#F2F2F2")!))
                                             }
                                         }
                                         else {
@@ -69,11 +75,6 @@ struct AddInsightView: View {
                                                 .padding(.all, 8)
                                             }
                                         }
-                                    }
-                                    .padding(12)
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color(uiColor: UIColor(hex: "#F2F2F2")!))
                                     }
                                     
                                 case .image:
@@ -102,9 +103,7 @@ struct AddInsightView: View {
                                             Image(uiImage: viewModel.sourceImage!)
                                                 .resizable()
                                                 .scaledToFill()
-                                                .cornerRadius(18, corners: .allCorners)
                                                 .frame(height: 96)
-                                                .clipped()
                                             
                                             Button {
                                                 viewModel.isSourceContentLoaded = false
@@ -115,6 +114,8 @@ struct AddInsightView: View {
                                             .foregroundColor(.black)
                                             .padding(.all, 8)
                                         }
+                                        .cornerRadius(18, corners: .allCorners)
+                                        .clipped()
                                     }
                                     
                                 case .quote:
@@ -218,6 +219,5 @@ struct AddInsightView: View {
                         }
                 })
             }
-        }
     }
 }
