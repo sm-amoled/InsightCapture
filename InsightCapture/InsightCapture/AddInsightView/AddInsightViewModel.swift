@@ -20,6 +20,7 @@ class AddInsightViewModel: ObservableObject {
     @Published var sourceImage: UIImage? = nil
     @Published var sourceTitle = ""
     @Published var sourceQuote = ""
+    @Published var sourceName = "DEBUG"
     
     // Photo Picker
     @Published var isImagePickerPresented = false
@@ -47,6 +48,7 @@ class AddInsightViewModel: ObservableObject {
                     self.sourceUrl = result.0
                     self.sourceTitle = result.1
                     self.sourceImage = result.3
+                    self.sourceName = result.4
                     
                     self.isSourceContentLoaded = true
                 }
@@ -66,6 +68,8 @@ class AddInsightViewModel: ObservableObject {
             print("save with Image Source")
             insight = .init(title: inputTitle, content: inputContent, image: sourceImage)
             
+            InsightHistoryManager.shared.addInsightSourceItem(source: "사진")
+            
         case .url:
             print("save with URL Source")
             guard let url = URL(string: sourceUrl) else {
@@ -77,12 +81,17 @@ class AddInsightViewModel: ObservableObject {
             insight = .init(title: inputTitle, content: inputContent,
                             url: url, thumbnailImage: sourceImage, urlTitle: sourceTitle)
             
+            InsightHistoryManager.shared.addInsightSourceItem(source: sourceName)
+            
         case .quote:
             insight = .init(title: inputTitle, content: inputContent, quote: sourceQuote)
+            
+            InsightHistoryManager.shared.addInsightSourceItem(source: "인용")
             
         case .brain:
             insight = .init(title: inputTitle, content: inputContent)
             
+            InsightHistoryManager.shared.addInsightSourceItem(source: "생각")
         }
         
         guard let insight = insight else { return }
@@ -91,8 +100,8 @@ class AddInsightViewModel: ObservableObject {
 }
 
 extension AddInsightViewModel {
-    func fetchData(from url: URL, _ completion: @escaping ((String, String, String, UIImage?))->Void ) -> (String, String, String, UIImage?) {
-        var result: (url: String, title: String, description: String, image: UIImage?) = ("INIT_URL","INIT_TITLE","INIT_DESCRIPTION", nil)
+    func fetchData(from url: URL, _ completion: @escaping ((String, String, String, UIImage?, String))->Void ) -> (String, String, String, UIImage?, String) {
+        var result: (url: String, title: String, description: String, image: UIImage?, sourceName: String) = ("INIT_URL","INIT_TITLE","INIT_DESCRIPTION", nil, "")
         
         let provider = LPMetadataProvider()
         provider.startFetchingMetadata(for: url) { metaData, error in
@@ -105,9 +114,10 @@ extension AddInsightViewModel {
                 return
             }
             
-            result.url = url.baseURL?.absoluteString ?? "https://google.com"
+            result.url = url.absoluteString
             result.title = data.title ?? "NO_TITLE"
             result.description = data.value(forKey: "summary") as? String ?? "NO_DESCRIPTION"
+            result.sourceName = data.value(forKey: "_siteName") as! String
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else {

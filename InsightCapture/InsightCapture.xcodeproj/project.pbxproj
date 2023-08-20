@@ -49,6 +49,9 @@
 		34C8FDAC29D40D79003401CE /* OffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAB29D40D79003401CE /* OffsetModifier.swift */; };
 		34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAD29D42732003401CE /* UINavigationController+.swift */; };
 		34C8FDB029D42FFF003401CE /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FDAF29D42FFF003401CE /* View+.swift */; };
+		34D6CF332A91935E0002663E /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6CF322A91935E0002663E /* MyPageViewModel.swift */; };
+		34D6CF352A91F6870002663E /* InsightHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6CF342A91F6870002663E /* InsightHistoryManager.swift */; };
+		34D6CF362A9207200002663E /* InsightHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6CF342A91F6870002663E /* InsightHistoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,8 @@
 		34C8FDAB29D40D79003401CE /* OffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetModifier.swift; sourceTree = "<group>"; };
 		34C8FDAD29D42732003401CE /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		34C8FDAF29D42FFF003401CE /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		34D6CF322A91935E0002663E /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		34D6CF342A91F6870002663E /* InsightHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightHistoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +179,7 @@
 				34624F4829CCA13D00518FB4 /* InsightData+CoreDataProperties.swift */,
 				34624F4B29CCA22C00518FB4 /* CoreDataManager.swift */,
 				34624F5229CEDD9E00518FB4 /* Insight.swift */,
+				34D6CF342A91F6870002663E /* InsightHistoryManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -253,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				34C8FDA129D30226003401CE /* MyPageView.swift */,
+				34D6CF322A91935E0002663E /* MyPageViewModel.swift */,
 			);
 			path = MyPageView;
 			sourceTree = "<group>";
@@ -395,6 +402,7 @@
 				34624F5429CEDF7600518FB4 /* Insight.swift in Sources */,
 				34624F4D29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
 				34624F4629CCA10D00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
+				34D6CF362A9207200002663E /* InsightHistoryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +413,7 @@
 				34C8FD9729D26CA7003401CE /* Date+.swift in Sources */,
 				34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */,
 				3480CE9B29DABFC000649B6D /* QuoteSourceView.swift in Sources */,
+				34D6CF332A91935E0002663E /* MyPageViewModel.swift in Sources */,
 				346E9F352A7E178800FD61DD /* ImagePicker.swift in Sources */,
 				34624F4A29CCA13D00518FB4 /* InsightData+CoreDataProperties.swift in Sources */,
 				34C8FDAA29D31C26003401CE /* InsightPageViewModel.swift in Sources */,
@@ -415,6 +424,7 @@
 				34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */,
 				34624F4929CCA13D00518FB4 /* InsightData+CoreDataClass.swift in Sources */,
 				34624F5C29D1335800518FB4 /* InsightListView.swift in Sources */,
+				34D6CF352A91F6870002663E /* InsightHistoryManager.swift in Sources */,
 				34C8FD9B29D2C43B003401CE /* InsightListCardView.swift in Sources */,
 				346FAD8929B718B3004CEE9B /* ContentView.swift in Sources */,
 				3480CE9729DA85F300649B6D /* InsightSourceView.swift in Sources */,

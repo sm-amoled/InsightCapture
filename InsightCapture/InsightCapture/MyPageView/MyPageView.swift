@@ -10,11 +10,12 @@ import SwiftUI
 struct MyPageView: View {
     @Environment(\.dismiss) var dismiss
 
+    @ObservedObject var viewModel: MyPageViewModel = MyPageViewModel()
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
                 .foregroundColor(Color(uiColor: UIColor.systemGray5))
-//                .foregroundColor(Color.red)
                 .edgesIgnoringSafeArea(.vertical)
             
             VStack {
@@ -26,8 +27,8 @@ struct MyPageView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             HStack(spacing: 0){
                                 Text("📅 ")
-                                Text("생각을 함께 수집한 지 ")
-                                Text("5개월")
+                                Text("영감을 함께 수집한 지 ")
+                                Text(viewModel.durationDayText)
                                     .font(Font.system(size: 17, weight: .bold))
                                 Text("이 되었어요.")
                             }
@@ -36,7 +37,7 @@ struct MyPageView: View {
                             HStack(spacing: 0){
                                 Text("🕊️ ")
                                 Text("그 동안 생각, 날 것을 ")
-                                Text("127번")
+                                Text(viewModel.runCountText)
                                     .font(Font.system(size: 17, weight: .bold))
                                 Text(" 실행했어요.")
                             }
@@ -45,7 +46,7 @@ struct MyPageView: View {
                             HStack(spacing: 0){
                                 Text("👀 ")
                                 Text("벌써 ")
-                                Text("30개")
+                                Text(viewModel.insightCountText)
                                     .font(Font.system(size: 17, weight: .bold))
                                 Text("의 영감을 기록했어요!")
                             }
@@ -54,9 +55,9 @@ struct MyPageView: View {
                             HStack(spacing: 0){
                                 Text("🏠 ")
                                 Text("주로 영감을 얻은 곳은 ")
-                                Text("YouTube")
+                                Text(viewModel.mostInsightSourceText)
                                     .font(Font.system(size: 17, weight: .bold))
-                                Text(" 였어요.")
+                                Text("이였어요.")
                             }
                             .font(Font.system(size: 15, weight: .regular))
                         }
@@ -136,11 +137,5 @@ struct MyPageView: View {
         }
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
-    }
-}
-
-struct MyPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageView()
     }
 }
