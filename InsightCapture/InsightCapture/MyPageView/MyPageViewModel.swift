@@ -8,7 +8,6 @@
 import SwiftUI
 
 class MyPageViewModel: ObservableObject {
-    
     @Published var durationDayText: String = "1일"
     @Published var runCountText: String = "1번"
     @Published var insightCountText: String = "1개"

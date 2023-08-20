@@ -69,7 +69,7 @@ struct MyPageView: View {
                     
                     Section("이용 안내") {
                         NavigationLink("공지사항을 알려드립니다") {
-                            return EmptyView()
+                            return AnnouncementListView()
                         }
                         .font(Font.system(size: 15, weight: .regular))
                         .foregroundColor(.black)
