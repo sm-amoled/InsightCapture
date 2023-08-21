@@ -81,5 +81,22 @@ class InsightPageViewModel: ObservableObject {
     
     func deleteInsight() {
         CoreDataManager.shared.deleteInsight(insightData: insight)
+        
+        switch(insight.type) {
+        case InsightType.image.rawValue:
+            InsightHistoryManager.shared.removeInsightSourceItem(source: "사진")
+            
+        case InsightType.url.rawValue:
+            InsightHistoryManager.shared.removeInsightSourceItem(source: URL(string: insight.urlString!)?.host() ?? "")
+            
+        case InsightType.quote.rawValue:
+            InsightHistoryManager.shared.removeInsightSourceItem(source: "인용")
+            
+        case InsightType.brain.rawValue:
+            InsightHistoryManager.shared.removeInsightSourceItem(source: "생각")
+            
+        default:
+            let _ = 0
+        }
     }
 }

@@ -19,6 +19,7 @@ class ShareViewController: UIViewController {
     var urlThumbnailImage: UIImage?
     var urlTitle: String?
     var urlDescription: String?
+    var urlSourceName: String?
     
     var quote: String?
     
@@ -382,6 +383,7 @@ extension ShareViewController {
             
             self.urlTitle = data.title
             self.urlDescription = data.value(forKey: "summary") as? String ?? ""
+            self.urlSourceName = data.value(forKey: "_siteName") as? String ?? ""
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else { return }
