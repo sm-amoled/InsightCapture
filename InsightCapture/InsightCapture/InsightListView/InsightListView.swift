@@ -50,7 +50,7 @@ struct InsightListView: View {
                 
                 ZStack {
                     HStack(spacing: 8) {
-                        Text("Insight Capture")
+                        Text("생각, 날 것")
                             .font(Font.system(size: 18, weight: .semibold))
                         
                         Spacer()
