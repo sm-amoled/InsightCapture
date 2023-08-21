@@ -68,55 +68,108 @@ struct MyPageView: View {
                     .foregroundColor(.black)
                     
                     Section("이용 안내") {
-                        NavigationLink("공지사항을 알려드립니다") {
-                            return AnnouncementListView()
+                        ZStack {
+                            NavigationLink {
+                                return AnnouncementListView()
+                            } label: {
+                                EmptyView()
+                            }
+                            
+                            HStack {
+                                Text("공지사항을 알려드립니다")
+                                    .font(Font.system(size: 15, weight: .regular))
+                                
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color.gray)
+                                    .font(Font.system(size: 15, weight: .medium))
+                            }
                         }
-                        .font(Font.system(size: 15, weight: .regular))
-                        .foregroundColor(.black)
                         
-                        NavigationLink("문의는 여기로 남겨주세요") {
-                            return EmptyView()
+                        Button {
+                            UIApplication.shared.open(URL(string: "https://open.kakao.com/o/szPnFuCf")!)
+                        } label: {
+                            HStack {
+                                Text("문의는 여기로 남겨주세요")
+                                    .foregroundColor(.black)
+                                    .font(Font.system(size: 15, weight: .regular))
+
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color.gray)
+                                    .font(Font.system(size: 15, weight: .medium))
+
+                            }
                         }
-                        .font(Font.system(size: 15, weight: .regular))
-                        .foregroundColor(.black)
                     }
                     .font(Font.system(size: 18, weight: .semibold))
                     .foregroundColor(.black)
                     
                     Section("바라는 점이 있나요") {
-                        NavigationLink("생각, 날 것이 더 유용해지기 위해\n필요한 기능들을 제안해주세요!") {
-                            return EmptyView()
+                        Button {
+                            UIApplication.shared.open(URL(string: "https://open.kakao.com/o/szPnFuCf")!)
+                        } label: {
+                            HStack {
+                                Text("생각, 날 것이 더 유용해지기 위해\n필요한 기능들을 제안해주세요!")
+                                    .foregroundColor(.black)
+                                    .font(Font.system(size: 15, weight: .regular))
+                                    .lineSpacing(8)
+
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color.gray)
+                                    .font(Font.system(size: 15, weight: .medium))
+                            }
+                            .padding(.vertical, 8)
                         }
-                        .padding(.vertical, 10)
-                        .lineSpacing(8)
-                        .font(Font.system(size: 15, weight: .regular))
-                        .foregroundColor(.black)
                     }
-                    .listRowSeparator(.hidden)
                     .font(Font.system(size: 18, weight: .semibold))
                     .foregroundColor(.black)
                     
-                    Section("약관 및 정책") {
-                        NavigationLink("이용 약관") {
-                            return EmptyView()
-                        }
-                        .font(Font.system(size: 15, weight: .regular))
-                        .foregroundColor(.black)
-                        
-                        NavigationLink("개인정보 처리 방침") {
-                            return EmptyView()
-                        }
-                        .font(Font.system(size: 15, weight: .regular))
-                        .foregroundColor(.black)
-                    }
-                    .font(Font.system(size: 18, weight: .semibold))
-                    .foregroundColor(.black)
+//                    Section("약관 및 정책") {
+//                        ZStack {
+//                            NavigationLink {
+//                                return EmptyView()
+//                            } label: {
+//                                EmptyView()
+//                            }
+//
+//                            HStack {
+//                                Text("이용 약관")
+//                                    .font(Font.system(size: 15, weight: .regular))
+//
+//                                Spacer()
+//                                Image(systemName: "chevron.right")
+//                                    .foregroundColor(Color.gray)
+//                                    .font(Font.system(size: 15, weight: .medium))
+//                            }
+//                        }
+//
+//                        ZStack {
+//                            NavigationLink {
+//                                return EmptyView()
+//                            } label: {
+//                                EmptyView()
+//                            }
+//
+//                            HStack {
+//                                Text("개인정보 처리 방침")
+//                                    .font(Font.system(size: 15, weight: .regular))
+//
+//                                Spacer()
+//                                Image(systemName: "chevron.right")
+//                                    .foregroundColor(Color.gray)
+//                                    .font(Font.system(size: 15, weight: .medium))
+//                            }
+//                        }
+//                    }
+//                    .font(Font.system(size: 18, weight: .semibold))
+//                    .foregroundColor(.black)
                 }
                 .scrollContentBackground(.hidden)
                 .background(Color(uiColor: UIColor.systemGray5))
                 .scrollIndicators(.hidden)
             }
-            
             
             HStack(spacing: 8) {
                 Button {
