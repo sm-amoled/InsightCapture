@@ -82,7 +82,7 @@ extension CoreDataManager {
     func getAllInsights() -> [InsightData] {
         let fetchRequest: NSFetchRequest<InsightData> = InsightData.fetchRequest()
         let result = try? context.fetch(fetchRequest)
-        
+            
         return result?.reversed() ?? []        
     }
     

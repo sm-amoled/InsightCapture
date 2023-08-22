@@ -38,12 +38,11 @@ struct InsightListView: View {
                 ScrollView {
                     Spacer()
                         .frame(height: 50)
-                    
-                    ForEach(viewModel.insightList) { insightData in
+//
+                    ForEach(viewModel.insightList, id: \.self) { insightData in
                         InsightListCardView(viewModel: InsightListCardViewModel(insight: insightData))
                     }
                 }
-                .scrollIndicators(.hidden)
                 .refreshable {
                     viewModel.getInsightList()
                 }

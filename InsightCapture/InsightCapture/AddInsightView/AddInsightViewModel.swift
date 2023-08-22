@@ -117,7 +117,7 @@ extension AddInsightViewModel {
             result.url = url.absoluteString
             result.title = data.title ?? "NO_TITLE"
             result.description = data.value(forKey: "summary") as? String ?? "NO_DESCRIPTION"
-            result.sourceName = data.value(forKey: "_siteName") as! String
+            result.sourceName = data.value(forKey: "_siteName") as? String ?? "정보의 바다"
             
             data.imageProvider?.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
                 guard error == nil else {
