@@ -156,11 +156,20 @@ struct TopBar: View {
                 .background {
                     VStack {
                         Spacer()
-                        Rectangle()
-                            .cornerRadius(60, corners: [.topLeft, .topRight])
-                            .foregroundColor(.white)
-                            .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
-                            .shadow(radius: 4, y: -6)
+                        ZStack {
+                            Rectangle()
+                                .cornerRadius(60, corners: [.topLeft, .topRight])
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+                                .shadow(radius: 2, y: -3)
+                                .offset(y: -3)
+                            
+                            Rectangle()
+                                .cornerRadius(60, corners: [.topLeft, .topRight])
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+    //                            .shadow(radius: 4, y: -6)
+                        }
                     }
                 }
             }

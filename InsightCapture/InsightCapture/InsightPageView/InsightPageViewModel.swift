@@ -17,7 +17,7 @@ class InsightPageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var isShowingActions: Bool = false
     
-    let maxHeight = UIScreen.main.bounds.height / 2.6
+    let maxHeight = UIScreen.main.bounds.height / 2.6 + 10
     let topEdge: CGFloat = 15
     
     init(insight: InsightData) {
