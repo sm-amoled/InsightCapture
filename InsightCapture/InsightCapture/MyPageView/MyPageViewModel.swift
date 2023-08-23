@@ -14,7 +14,7 @@ class MyPageViewModel: ObservableObject {
     @Published var mostInsightSourceText: String = ""
     
     init() {
-        setMyHistory()
+//        setMyHistory()
     }
     
     func setMyHistory() {

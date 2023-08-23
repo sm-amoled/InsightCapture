@@ -190,5 +190,8 @@ struct MyPageView: View {
         }
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
+        .onAppear(perform: {
+            viewModel.setMyHistory()
+        })
     }
 }

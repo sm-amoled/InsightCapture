@@ -50,12 +50,11 @@ class ShareViewController: UIViewController {
         let bar = UINavigationBar()
         bar.barStyle = .default
         
-        let item = UINavigationItem(title: "인사이트 기록")
+        let item = UINavigationItem(title: "날 것의 생각 기록하기")
         item.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(tapCancelButton))
         item.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(tapSaveButton))
         
         bar.items = [item]
-        
         return bar
     }()
     
@@ -74,6 +73,7 @@ class ShareViewController: UIViewController {
     lazy var sourceImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     
@@ -92,8 +92,12 @@ class ShareViewController: UIViewController {
         return view
     }()
     
-    lazy var sourceTextColumnView: UIView = {
-        return UIView()
+    lazy var sourceTextColumnView: UIStackView = {
+        let view = UIStackView()
+        view.alignment = .leading
+        view.distribution = .fillProportionally
+        view.axis = .vertical
+        return view
     }()
     
     lazy var sourceIndicatorView: UIActivityIndicatorView = {
@@ -115,11 +119,6 @@ class ShareViewController: UIViewController {
         let view = UIView()
         return view
     }()
-    
-    //    lazy var textFieldScrollView: UIScrollView = {
-    //        let view = UIScrollView()
-    //        view.
-    //    }()
     
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
@@ -204,8 +203,7 @@ class ShareViewController: UIViewController {
                         itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
                             self.url = url as? URL
                             
-                            self.fetchData(from: url as! URL)
-                            self.isShowingSourceViewIndicator = false
+                            self.fetchData(from: url as! URL, completion: {self.isShowingSourceViewIndicator = false})
                         }
                     }
                     
@@ -219,10 +217,7 @@ class ShareViewController: UIViewController {
                             
                             self.url = url
                             
-                            DispatchQueue.main.async {
-                                self.fetchData(from: url)
-                                self.isShowingSourceViewIndicator = false
-                            }
+                            self.fetchData(from: url, completion: {self.isShowingSourceViewIndicator = false})
                         } else {
                             self.sourceType = .quote
                             self.setQuoteSourceLayout()
@@ -287,35 +282,27 @@ extension ShareViewController {
         sourceView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(8)
             $0.top.equalToSuperview().offset(12)
-            //            $0.height.equalTo(130)
+            $0.height.equalTo(92)
         }
         
         self.sourceView.addSubview(sourceImageView)
         sourceImageView.snp.makeConstraints {
             $0.left.equalToSuperview().offset(12)
-            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
+
             $0.width.equalTo(136)
             $0.height.equalTo(76)
-            $0.centerY.equalToSuperview()
         }
-        
+
         self.sourceView.addSubview(sourceTextColumnView)
         sourceTextColumnView.snp.makeConstraints {
             $0.left.equalTo(sourceImageView.snp.right).offset(16)
             $0.right.equalToSuperview().inset(16)
             $0.verticalEdges.equalTo(sourceImageView)
         }
-        
-        self.sourceTextColumnView.addSubview(sourceTitleView)
-        sourceTitleView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-        }
-        
-        self.sourceTextColumnView.addSubview(sourceDescriptionView)
-        sourceDescriptionView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(sourceTitleView.snp.bottom).offset(8)
-        }
+
+        sourceTextColumnView.addArrangedSubview(sourceTitleView)
+        sourceTextColumnView.addArrangedSubview(sourceDescriptionView)
         
         self.sourceView.addSubview(sourceIndicatorView)
         sourceIndicatorView.snp.makeConstraints {
@@ -345,22 +332,23 @@ extension ShareViewController {
         
         self.textFieldView.addSubview(titleTextField)
         titleTextField.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(textFieldView.snp.top).offset(4)
+            $0.right.equalToSuperview()
+            $0.left.equalToSuperview().offset(6)
+            $0.top.equalTo(textFieldView.snp.top)
             $0.height.equalTo(30)
         }
         
         self.textFieldView.addSubview(divider)
         divider.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(titleTextField.snp.bottom).offset(8)
+            $0.top.equalTo(titleTextField.snp.bottom).offset(4)
             $0.height.equalTo(1)
         }
         
         self.textFieldView.addSubview(descriptionTextField)
         descriptionTextField.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(divider.snp.bottom).offset(8)
+            $0.top.equalTo(divider.snp.bottom).offset(4)
             $0.bottom.equalToSuperview()
         }
     }
@@ -375,7 +363,7 @@ extension ShareViewController {
 }
 
 extension ShareViewController {
-    func fetchData(from url: URL) {
+    func fetchData(from url: URL, completion: @escaping ()->Void) {
         let provider = LPMetadataProvider()
         provider.startFetchingMetadata(for: url) { metaData, error in
             if let error = error { return }
@@ -396,6 +384,7 @@ extension ShareViewController {
                         self.sourceTitleView.text = self.urlTitle
                         self.sourceDescriptionView.text = URLComponents(string: url.absoluteString)?.host
                         self.sourceImageView.image = self.urlThumbnailImage
+                        completion()
                     }
                 } else {
                     print("no image available")
