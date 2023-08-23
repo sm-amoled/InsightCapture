@@ -32,7 +32,7 @@ final class InsightHistoryManager {
     func getFirstDayDistance() -> DateComponents {
         let firstDay = UserDefaults.standard.object(forKey: "FirstDay") as! Date
         
-        let dateDistance = Calendar.current.dateComponents([.year, .month, .day], from: Date(), to: firstDay)
+        let dateDistance = Calendar.current.dateComponents([.year, .month, .day], from: firstDay, to: Date())
         return dateDistance
     }
     
