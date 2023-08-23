@@ -202,6 +202,7 @@ class ShareViewController: UIViewController {
                         
                         itemProvider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { (url, error) in
                             self.url = url as? URL
+                            self.url = URL(string: (self.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
                             
                             self.fetchData(from: url as! URL, completion: {self.isShowingSourceViewIndicator = false})
                         }

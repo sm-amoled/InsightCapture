@@ -35,7 +35,7 @@ class AddInsightViewModel: ObservableObject {
     }
     
     func checkUrlInput() {
-        guard let url = URL(string: sourceUrl) else { return }
+        guard let url = URL(string: sourceUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else { return }
         
         print("Fetch Start")
         isFetchingData = true
@@ -104,6 +104,8 @@ extension AddInsightViewModel {
         var result: (url: String, title: String, description: String, image: UIImage?, sourceName: String) = ("INIT_URL","INIT_TITLE","INIT_DESCRIPTION", nil, "")
         
         let provider = LPMetadataProvider()
+        print(url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
+        
         provider.startFetchingMetadata(for: url) { metaData, error in
             if let _ = error {
                 completion(result)
