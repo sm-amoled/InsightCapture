@@ -37,6 +37,8 @@
 		3480CE9C29DACE8C00649B6D /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9429D1DEBE003401CE /* Color+.swift */; };
 		3480CE9E29DAE55B00649B6D /* ImageSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */; };
 		3480CEA629DC02EA00649B6D /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 3480CEA529DC02EA00649B6D /* SwiftUIImageViewer */; };
+		34AFC04A2A96E4B800BA1AE7 /* UpdateInsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC0492A96E4B800BA1AE7 /* UpdateInsightView.swift */; };
+		34AFC04C2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC04B2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift */; };
 		34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9429D1DEBE003401CE /* Color+.swift */; };
 		34C8FD9729D26CA7003401CE /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9629D26CA7003401CE /* Date+.swift */; };
 		34C8FD9B29D2C43B003401CE /* InsightListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9A29D2C43B003401CE /* InsightListCardView.swift */; };
@@ -109,6 +111,8 @@
 		3480CE9829DA941800649B6D /* URLSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSourceView.swift; sourceTree = "<group>"; };
 		3480CE9A29DABFC000649B6D /* QuoteSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteSourceView.swift; sourceTree = "<group>"; };
 		3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSourceView.swift; sourceTree = "<group>"; };
+		34AFC0492A96E4B800BA1AE7 /* UpdateInsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsightView.swift; sourceTree = "<group>"; };
+		34AFC04B2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsightViewModel.swift; sourceTree = "<group>"; };
 		34C8FD9429D1DEBE003401CE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		34C8FD9629D26CA7003401CE /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		34C8FD9A29D2C43B003401CE /* InsightListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightListCardView.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 				34624F1129C1C12900518FB4 /* Info.plist */,
 				346FAD8629B718B3004CEE9B /* InsightCaptureApp.swift */,
 				346FAD8829B718B3004CEE9B /* ContentView.swift */,
+				34AFC0482A96E4A500BA1AE7 /* UpdateInsightView */,
 				34C8FDA329D30B37003401CE /* AddInsightView */,
 				34C8FDA029D30212003401CE /* MyPageView */,
 				34C8FDA629D31B82003401CE /* InsightPageView */,
@@ -250,6 +255,15 @@
 				346FAD8D29B718B4004CEE9B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34AFC0482A96E4A500BA1AE7 /* UpdateInsightView */ = {
+			isa = PBXGroup;
+			children = (
+				34AFC0492A96E4B800BA1AE7 /* UpdateInsightView.swift */,
+				34AFC04B2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift */,
+			);
+			path = UpdateInsightView;
 			sourceTree = "<group>";
 		};
 		34C8FD9329D1565F003401CE /* UIComponents */ = {
@@ -442,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C8FD9729D26CA7003401CE /* Date+.swift in Sources */,
+				34AFC04A2A96E4B800BA1AE7 /* UpdateInsightView.swift in Sources */,
 				34D6CF3A2A9240E80002663E /* AnnouncementListViewModel.swift in Sources */,
 				34C8FDAE29D42732003401CE /* UINavigationController+.swift in Sources */,
 				3480CE9B29DABFC000649B6D /* QuoteSourceView.swift in Sources */,
@@ -468,6 +483,7 @@
 				3480CE9929DA941800649B6D /* URLSourceView.swift in Sources */,
 				34624F4529CC9FDA00518FB4 /* InsightDataModel.xcdatamodeld in Sources */,
 				34D6CF3C2A9243540002663E /* AnnouncementPageView.swift in Sources */,
+				34AFC04C2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift in Sources */,
 				34C8FD9D29D2C47D003401CE /* InsightListViewModel.swift in Sources */,
 				34624F4C29CCA22C00518FB4 /* CoreDataManager.swift in Sources */,
 				34D6CF382A9239FF0002663E /* AnnouncementListView.swift in Sources */,

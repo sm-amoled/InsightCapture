@@ -27,6 +27,7 @@ struct InsightListCardView: View {
                         Spacer()
                         Button {
                             // 더 보기 액션 구현하기
+                            
                         } label: {
                             Image(systemName: "ellipsis")
                                 .font(Font.system(size: 13, weight: .medium))

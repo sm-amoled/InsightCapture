@@ -1,18 +1,18 @@
 //
-//  AddInsightView.swift
+//  UpdateInsightView.swift
 //  InsightCapture
 //
-//  Created by Park Sungmin on 2023/03/28.
+//  Created by Park Sungmin on 2023/08/24.
 //
 
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct AddInsightView: View {
-    
-    @ObservedObject var viewModel: AddInsightViewModel
+struct UpdateInsightView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState private var isTitleFieldIsFocused: Bool
+    
+    @StateObject var viewModel: UpdateInsightViewModel
     
     var body: some View {
         NavigationView {
@@ -187,7 +187,7 @@ struct AddInsightView: View {
                 .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
-                .navigationTitle(Text("인사이트 남기기"))
+                .navigationTitle(Text("기록 수정하기"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -205,7 +205,7 @@ struct AddInsightView: View {
                             viewModel.tapSaveButton()
                             dismiss()
                         } label: {
-                            Text("저장")
+                            Text("수정")
                         }
                         .foregroundColor(.black)
                     }
@@ -219,4 +219,5 @@ struct AddInsightView: View {
                 })
             }
     }
+
 }

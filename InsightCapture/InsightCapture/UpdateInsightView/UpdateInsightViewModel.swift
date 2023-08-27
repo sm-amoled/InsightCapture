@@ -1,20 +1,20 @@
 //
-//  AddInsightViewModel.swift
+//  UpdateInsightViewModel.swift
 //  InsightCapture
 //
-//  Created by Park Sungmin on 2023/08/01.
+//  Created by Park Sungmin on 2023/08/24.
 //
 
 import SwiftUI
 import LinkPresentation
 
-class AddInsightViewModel: ObservableObject {
+class UpdateInsightViewModel: ObservableObject {
+    var insightData: InsightData
     
-    @Published var inputTitle = ""
-    @Published var inputContent = ""
+    @Published var inputTitle: String
+    @Published var inputContent: String
     
     @Published var sourceType: InsightType
-    
     
     @Published var sourceUrl = ""
     @Published var sourceImage: UIImage? = nil
@@ -29,17 +29,44 @@ class AddInsightViewModel: ObservableObject {
     @Published var isSourceContentLoaded = false
     @Published var isFetchingData = false
     
-    init(sourceType: InsightType) {
-        self.sourceType = sourceType
+    init(insight: InsightData) {
+        self.insightData = insight
+        
+        self.inputTitle = insight.title ?? ""
+        self.inputContent = insight.content ?? ""
+        
+        self.sourceType = InsightType(rawValue: insight.type) ?? .brain
+        
+        if self.sourceType == .url {
+            fetchData(from: URL(string: insight.urlString!)!) { result in
+                DispatchQueue.main.async {
+                    self.isFetchingData = false
+                    
+                    if result.0 != "INIT_URL" {
+                        self.sourceUrl = result.0
+                        self.sourceTitle = result.1
+                        self.sourceImage = result.3
+                        self.sourceName = result.4
+                        
+                        self.isSourceContentLoaded = true
+                    }
+                }
+            }
+        }
+        self.sourceUrl = insight.urlString ?? ""
+        self.sourceImage = insight.image != nil ? UIImage(data: insight.image!) : nil
+        
+        isSourceContentLoaded = true
+        isFetchingData = false
     }
     
     func checkUrlInput() {
         guard let url = URL(string: sourceUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else { return }
         
-        print("Fetch Start")
+//        print("Fetch Start")
         isFetchingData = true
         
-        let _ = fetchData(from: url) { result in
+        fetchData(from: url) { result in
             DispatchQueue.main.async {
                 self.isFetchingData = false
                 
@@ -60,46 +87,38 @@ class AddInsightViewModel: ObservableObject {
     }
     
     func tapSaveButton() {
-        var insight: Insight!
         
         switch(sourceType) {
         case .image:
-            print("save with Image Source")
-            insight = .init(title: inputTitle, content: inputContent, image: sourceImage)
-            
-            InsightHistoryManager.shared.addInsightSourceItem(source: "사진")
+            insightData.title = inputTitle
+            insightData.content = inputContent
+            insightData.image = sourceImage?.pngData()
             
         case .url:
-            print("save with URL Source")
-            guard let url = URL(string: sourceUrl) else {
-                print("invalid url")
-                // 여기에서 토스트 메시지 등을 출력해야 할 듯?
-                return
-            }
-            
-            insight = .init(title: inputTitle, content: inputContent,
-                            url: url, thumbnailImage: sourceImage, urlTitle: sourceTitle)
-            
-            InsightHistoryManager.shared.addInsightSourceItem(source: sourceName)
+            insightData.title = inputTitle
+            insightData.content = inputContent
+            insightData.urlString = sourceUrl
+            insightData.urlTitle = sourceTitle
+            insightData.image = sourceImage?.pngData()
             
         case .quote:
-            insight = .init(title: inputTitle, content: inputContent, quote: sourceQuote)
-            
-            InsightHistoryManager.shared.addInsightSourceItem(source: "인용")
+            insightData.title = inputTitle
+            insightData.content = inputContent
+            insightData.quote = sourceQuote
             
         case .brain:
-            insight = .init(title: inputTitle, content: inputContent)
+            insightData.title = inputTitle
+            insightData.content = inputContent
             
-            InsightHistoryManager.shared.addInsightSourceItem(source: "생각")
         }
         
-        guard let insight = insight else { return }
-        CoreDataManager.shared.createInsight(insight: insight)
+//        self.insightData.objectWillChange.send()
+        CoreDataManager.shared.updateInsight()
     }
 }
 
-extension AddInsightViewModel {
-    func fetchData(from url: URL, _ completion: @escaping ((String, String, String, UIImage?, String))->Void ) -> (String, String, String, UIImage?, String) {
+extension UpdateInsightViewModel {
+    func fetchData(from url: URL, _ completion: @escaping ((String, String, String, UIImage?, String))->Void ) {
         var result: (url: String, title: String, description: String, image: UIImage?, sourceName: String) = ("INIT_URL","INIT_TITLE","INIT_DESCRIPTION", nil, "")
         
         let provider = LPMetadataProvider()
@@ -135,11 +154,10 @@ extension AddInsightViewModel {
                 completion(result)
             })
         }
-        return result
     }
 }
 
-extension AddInsightViewModel {
+extension UpdateInsightViewModel {
     func loadImage() {
         guard let selectedImage = selectedImage else { return }
         sourceImage = selectedImage

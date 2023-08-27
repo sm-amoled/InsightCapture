@@ -57,6 +57,13 @@ struct InsightPageView: View {
                             
                             // 인사이트 source
                             InsightSourceView(insight: viewModel.insight)
+                                .onChange(of: viewModel.insight.image) { newValue in
+                                    print("이미지 변경 되었음")
+                                    viewModel.objectWillChange.send()
+                                    viewModel.insight.objectWillChange.send()
+                                    
+                                }
+                                
                             
                             // 하단 여백
                             Spacer()
@@ -116,12 +123,18 @@ struct InsightPageView: View {
         .toolbarBackground(Color.white, for: .navigationBar)
         .confirmationDialog("인사이트", isPresented: $viewModel.isShowingActions, titleVisibility: .hidden) {
             Button("수정하기", action: {
-                
+                viewModel.isShowingEditSheet.toggle()
             })
             Button("삭제하기", role: .destructive, action: {
                 viewModel.deleteInsight()
                 dismiss()
             })
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowingEditSheet,
+                         onDismiss: {
+            viewModel.updatePageComponents()
+        }) {
+            UpdateInsightView(viewModel: UpdateInsightViewModel(insight: viewModel.insight))
         }
     }
 }
