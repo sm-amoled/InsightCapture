@@ -13,11 +13,12 @@ class InsightPageViewModel: ObservableObject {
     
     @Published var insight: InsightData
     @Published var offset: CGFloat
-    
     @Published var image: UIImage?
-    @Published var isShowingActions: Bool = false
     
-    let maxHeight = UIScreen.main.bounds.height / 2.6
+    @Published var isShowingActions: Bool = false
+    @Published var isShowingEditSheet: Bool = false
+    
+    let maxHeight = UIScreen.main.bounds.height / 2.6 + 10
     let topEdge: CGFloat = 15
     
     init(insight: InsightData) {
@@ -98,5 +99,9 @@ class InsightPageViewModel: ObservableObject {
         default:
             let _ = 0
         }
+    }
+    
+    func editInsight() {
+        self.isShowingEditSheet = true
     }
 }

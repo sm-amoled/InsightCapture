@@ -5,12 +5,12 @@
 //  Created by Park Sungmin on 2023/03/28.
 //po data.value(forKey: "_siteName")
 
-import UIKit
 import LinkPresentation
+import SwiftUI
 
 class InsightListCardViewModel: ObservableObject  {
     
-    @Published var insight: InsightData
+    @State var insight: InsightData
     
     @Published var urlImage: UIImage?
     @Published var urlTitle: String?
@@ -37,7 +37,6 @@ class InsightListCardViewModel: ObservableObject  {
                     
                     DispatchQueue.main.async {
                         self.urlTitle = data.title
-//                        self.urlDescription = (data.value(forKey: "summary") as! String)
                         self.urlImage = (image as! UIImage)
                     }
                 })

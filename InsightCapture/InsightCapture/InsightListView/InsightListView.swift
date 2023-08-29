@@ -38,19 +38,19 @@ struct InsightListView: View {
                 ScrollView {
                     Spacer()
                         .frame(height: 50)
-                    
-                    ForEach(viewModel.insightList) { insightData in
+//
+                    ForEach(viewModel.insightList, id: \.self) { insightData in
                         InsightListCardView(viewModel: InsightListCardViewModel(insight: insightData))
                     }
                 }
-                .scrollIndicators(.hidden)
                 .refreshable {
                     viewModel.getInsightList()
                 }
+                .scrollIndicators(.hidden)
                 
                 ZStack {
                     HStack(spacing: 8) {
-                        Text("Insight Capture")
+                        Text("생각, 날 것")
                             .font(Font.system(size: 18, weight: .semibold))
                         
                         Spacer()
@@ -110,6 +110,7 @@ struct InsightListView: View {
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "quote.opening", title: "인용", description: "글과 카피 속에서 발견한 영감")
                                 }
+                                
                                 Button {
                                     viewModel.showAddInsightView(of: .brain)
                                 } label: {

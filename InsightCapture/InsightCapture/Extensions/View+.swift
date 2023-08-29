@@ -20,9 +20,10 @@ extension View {
         @ViewBuilder placeholder: () -> Content) -> some View {
 
         ZStack(alignment: alignment) {
-            self
             placeholder().opacity(shouldShow ? 1 : 0)
                 .disabled(true)
+            
+            self
         }
     }
 }

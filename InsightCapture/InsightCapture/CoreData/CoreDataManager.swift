@@ -79,13 +79,6 @@ extension CoreDataManager {
         }
     }
     
-    func getAllInsights() -> [InsightData] {
-        let fetchRequest: NSFetchRequest<InsightData> = InsightData.fetchRequest()
-        let result = try? context.fetch(fetchRequest)
-        
-        return result?.reversed() ?? []        
-    }
-    
     func createInsight(insight: Insight) {
         let newInsight = InsightData(context: context)
         
@@ -100,6 +93,25 @@ extension CoreDataManager {
         newInsight.quote = insight.quote
         newInsight.image = insight.image
         
+        save()
+    }
+    
+    func getAllInsights() -> [InsightData] {
+        let fetchRequest: NSFetchRequest<InsightData> = InsightData.fetchRequest()
+        let result = try? context.fetch(fetchRequest)
+            
+        return result?.reversed() ?? []
+    }
+    
+    func getInsight(of insight: InsightData) -> InsightData? {
+        guard let data = try? context.existingObject(with: insight.objectID) as? InsightData else {
+            return nil
+        }
+        
+        return data
+    }
+    
+    func updateInsight() {
         save()
     }
     

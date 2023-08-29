@@ -14,7 +14,7 @@ struct InsightPageView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @GestureState private var dragOffset = CGSize.zero
-    
+        
     var body: some View {
         ZStack(alignment: .top) {
             VStack{
@@ -57,6 +57,13 @@ struct InsightPageView: View {
                             
                             // 인사이트 source
                             InsightSourceView(insight: viewModel.insight)
+                                .onChange(of: viewModel.insight.image) { newValue in
+                                    print("이미지 변경 되었음")
+                                    viewModel.objectWillChange.send()
+                                    viewModel.insight.objectWillChange.send()
+                                    
+                                }
+                                
                             
                             // 하단 여백
                             Spacer()
@@ -116,13 +123,21 @@ struct InsightPageView: View {
         .toolbarBackground(Color.white, for: .navigationBar)
         .confirmationDialog("인사이트", isPresented: $viewModel.isShowingActions, titleVisibility: .hidden) {
             Button("수정하기", action: {
-                
+                viewModel.isShowingEditSheet.toggle()
             })
             Button("삭제하기", role: .destructive, action: {
                 viewModel.deleteInsight()
                 dismiss()
             })
         }
+        .fullScreenCover(isPresented: $viewModel.isShowingEditSheet) {
+            UpdateInsightView(viewModel: UpdateInsightViewModel(insight: viewModel.insight))
+        }
+        .onChange(of: viewModel.insight.image, perform: { newValue in
+            viewModel.image = UIImage(data: newValue!)
+        })
+        .environmentObject(viewModel)
+        
     }
 }
 
@@ -156,11 +171,19 @@ struct TopBar: View {
                 .background {
                     VStack {
                         Spacer()
-                        Rectangle()
-                            .cornerRadius(60, corners: [.topLeft, .topRight])
-                            .foregroundColor(.white)
-                            .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
-                            .shadow(radius: 4, y: -6)
+                        ZStack {
+                            Rectangle()
+                                .cornerRadius(60, corners: [.topLeft, .topRight])
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+                                .shadow(radius: 2, y: -3)
+                                .offset(y: -3)
+                            
+                            Rectangle()
+                                .cornerRadius(60, corners: [.topLeft, .topRight])
+                                .foregroundColor(.white)
+                                .frame(width: UIScreen.main.bounds.width, height: topBarHeight)
+                        }
                     }
                 }
             }
