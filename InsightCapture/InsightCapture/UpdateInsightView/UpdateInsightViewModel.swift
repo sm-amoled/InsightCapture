@@ -25,7 +25,7 @@ class UpdateInsightViewModel: ObservableObject {
     // Photo Picker
     @Published var isImagePickerPresented = false
     @Published var selectedImage: UIImage?
-
+    
     @Published var isSourceContentLoaded = false
     @Published var isFetchingData = false
     
@@ -37,22 +37,32 @@ class UpdateInsightViewModel: ObservableObject {
         
         self.sourceType = InsightType(rawValue: insight.type) ?? .brain
         
-        if self.sourceType == .url {
+        switch self.sourceType {
+        case .url:
+            self.isFetchingData = true
+            
+            self.sourceUrl = insightData.urlString ?? ""
+            self.sourceTitle = insightData.urlTitle ?? ""
+            self.sourceImage  = UIImage(data: insightData.image!)!
+            
             fetchData(from: URL(string: insight.urlString!)!) { result in
                 DispatchQueue.main.async {
                     self.isFetchingData = false
                     
                     if result.0 != "INIT_URL" {
-                        self.sourceUrl = result.0
-                        self.sourceTitle = result.1
-                        self.sourceImage = result.3
                         self.sourceName = result.4
                         
                         self.isSourceContentLoaded = true
                     }
                 }
             }
+        case .quote:
+            self.sourceQuote = insightData.quote ?? ""
+            
+        default:
+            let _ = 0
         }
+        
         self.sourceUrl = insight.urlString ?? ""
         self.sourceImage = insight.image != nil ? UIImage(data: insight.image!) : nil
         
@@ -63,7 +73,6 @@ class UpdateInsightViewModel: ObservableObject {
     func checkUrlInput() {
         guard let url = URL(string: sourceUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) else { return }
         
-//        print("Fetch Start")
         isFetchingData = true
         
         fetchData(from: url) { result in
@@ -109,10 +118,8 @@ class UpdateInsightViewModel: ObservableObject {
         case .brain:
             insightData.title = inputTitle
             insightData.content = inputContent
-            
         }
         
-//        self.insightData.objectWillChange.send()
         CoreDataManager.shared.updateInsight()
     }
 }

@@ -18,13 +18,13 @@ struct InsightSourceView: View {
     var body: some View {
         switch (insight.type){
         case InsightType.image.rawValue:
-            ImageSourceView(insight: insight)
+            PageImageSourceView()
             
         case InsightType.url.rawValue:
-            URLSourceView(insight: insight)
+            PageURLSourceView()
             
         case InsightType.quote.rawValue:
-            QuoteSourceView(insight: insight)
+            PageQuoteSourceView()
         
         default:
             let _ = 0

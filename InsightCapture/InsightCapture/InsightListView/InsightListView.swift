@@ -110,6 +110,7 @@ struct InsightListView: View {
                                 } label: {
                                     InsightAddCategoryButtonLabel(iconName: "quote.opening", title: "인용", description: "글과 카피 속에서 발견한 영감")
                                 }
+                                
                                 Button {
                                     viewModel.showAddInsightView(of: .brain)
                                 } label: {

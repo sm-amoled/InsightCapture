@@ -103,6 +103,14 @@ extension CoreDataManager {
         return result?.reversed() ?? []
     }
     
+    func getInsight(of insight: InsightData) -> InsightData? {
+        guard let data = try? context.existingObject(with: insight.objectID) as? InsightData else {
+            return nil
+        }
+        
+        return data
+    }
+    
     func updateInsight() {
         save()
     }

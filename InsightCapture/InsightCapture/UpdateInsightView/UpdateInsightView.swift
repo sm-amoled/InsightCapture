@@ -59,7 +59,7 @@ struct UpdateInsightView: View {
                                         }
                                         else {
                                             ZStack(alignment: .bottomTrailing) {
-                                                URLSourceView(image: viewModel.sourceImage!,
+                                                CardURLSourceView(image: viewModel.sourceImage!,
                                                               urlTitle: viewModel.sourceTitle,
                                                               urlString: viewModel.sourceUrl)
                                                 .disabled(true)
@@ -71,7 +71,8 @@ struct UpdateInsightView: View {
                                                     Image(systemName: "xmark.circle.fill")
                                                 }
                                                 .foregroundColor(.black)
-                                                .padding(.all, 8)
+                                                .padding(.vertical, 8)
+                                                .padding(.horizontal, 16)
                                             }
                                         }
                                     }

@@ -14,7 +14,7 @@ struct InsightPageView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @GestureState private var dragOffset = CGSize.zero
-    
+        
     var body: some View {
         ZStack(alignment: .top) {
             VStack{
@@ -130,12 +130,14 @@ struct InsightPageView: View {
                 dismiss()
             })
         }
-        .fullScreenCover(isPresented: $viewModel.isShowingEditSheet,
-                         onDismiss: {
-            viewModel.updatePageComponents()
-        }) {
+        .fullScreenCover(isPresented: $viewModel.isShowingEditSheet) {
             UpdateInsightView(viewModel: UpdateInsightViewModel(insight: viewModel.insight))
         }
+        .onChange(of: viewModel.insight.image, perform: { newValue in
+            viewModel.image = UIImage(data: newValue!)
+        })
+        .environmentObject(viewModel)
+        
     }
 }
 

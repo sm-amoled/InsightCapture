@@ -41,52 +41,13 @@ struct InsightListCardView: View {
                     VStack(alignment: .leading) {
                         switch(viewModel.insight.type) {
                         case InsightType.image.rawValue:
-                            ZStack {
-                                if viewModel.insight.image == nil {
-                                    // 이미지가 없는 경우
-                                } else {
-                                    Image(uiImage: UIImage(data: viewModel.insight.image!)!)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: UIScreen.main.bounds.size.width - 32 - 16, height: (UIScreen.main.bounds.size.width - 32 - 16) * 0.56)
-                                        .cornerRadius(8)
-                                        .clipped()
-                                }
-                            }
-                            .padding(.horizontal, 8)
+                            CardImageSourceView(insight: viewModel.insight)
                             
                         case InsightType.url.rawValue:
-                            ZStack {
-                                URLSourceView(insight: viewModel.insight)
-                                    .disabled(true)
-                            }
-                            .padding(.horizontal, 8)
+                            CardURLSourceView(insight: viewModel.insight)
                             
                         case InsightType.quote.rawValue:
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(Color.randomColor(from: viewModel.insight.createdDate ?? Date()))
-                                    .padding(.horizontal, 50)
-                                    .padding(.vertical, 8)
-                                
-                                VStack {
-                                    Image(systemName: "quote.opening")
-                                        .padding(.top, 8)
-                                    
-                                    Text(viewModel.insight.quote ?? "")
-                                        .font(Font.system(size: 16, weight: .medium))
-                                        .lineLimit(3)
-                                        .padding(.top, 8)
-                                        .padding(.bottom, 16)
-                                    
-                                    HStack {
-                                        Spacer()
-                                    }
-                                }
-                                .padding(.all, 8)
-                                .cornerRadius(10)
-                            }
-                            .padding(.horizontal, 8)
+                            CardQuoteSourceView(insight: viewModel.insight)
                             
                         case InsightType.brain.rawValue:
                             EmptyView()
@@ -118,14 +79,13 @@ struct InsightListCardView: View {
                     }
                 }
             }
+            .padding(.horizontal, 16)
             .navigationDestination(isPresented: $viewModel.isShowingInsightPageView, destination: {
                 InsightPageView(viewModel: InsightPageViewModel(insight: viewModel.insight))
-                
             })
             .onTapGesture {
                 viewModel.tapCard()
             }
-            .padding(.horizontal, 16)
         }
     }
 }
