@@ -122,7 +122,7 @@ class ShareViewController: UIViewController {
     
     lazy var titleTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "제목"
+        textField.placeholder = PlaceholderList.titlePlaceholder.randomElement() ?? "제목"
         textField.backgroundColor = .clear
         textField.font = .systemFont(ofSize: 16, weight: .semibold)
         return textField
@@ -134,7 +134,7 @@ class ShareViewController: UIViewController {
         return view
     }()
     
-    let textViewPlaceHolder: String = "내용"
+    let textViewPlaceHolder: String = PlaceholderList.contentPlaceholder.randomElement() ?? "내용"
     
     lazy var descriptionTextField: UITextView = {
         let textField = UITextView()

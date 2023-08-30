@@ -156,7 +156,7 @@ struct UpdateInsightView: View {
                             VStack (spacing: 4) {
                                 TextField("", text: $viewModel.inputTitle)
                                     .placeholder(when: viewModel.inputTitle.isEmpty) {
-                                        Text("제목")
+                                        Text(viewModel.titlePlaceholderText)
                                             .font(Font.system(size: 15, weight: .medium))
                                             .foregroundColor(.gray)
                                     }
@@ -171,7 +171,7 @@ struct UpdateInsightView: View {
                                     .offset(x: -5)
                                     .placeholder(when: viewModel.inputContent.isEmpty) {
                                         VStack{
-                                            Text("내용")
+                                            Text(viewModel.contentPlaceholderText)
                                                 .font(Font.system(size: 15, weight: .medium))
                                                 .foregroundColor(.gray)
                                             Spacer()

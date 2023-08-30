@@ -29,6 +29,9 @@ class AddInsightViewModel: ObservableObject {
     @Published var isSourceContentLoaded = false
     @Published var isFetchingData = false
     
+    let titlePlaceholderText = PlaceholderList.titlePlaceholder.randomElement() ?? "제목"
+    let contentPlaceholderText = PlaceholderList.contentPlaceholder.randomElement() ?? "내용"
+    
     init(sourceType: InsightType) {
         self.sourceType = sourceType
     }
@@ -65,7 +68,9 @@ class AddInsightViewModel: ObservableObject {
         switch(sourceType) {
         case .image:
             print("save with Image Source")
-            insight = .init(title: inputTitle, content: inputContent, image: sourceImage)
+            insight = .init(title: inputTitle == "" ? titlePlaceholderText : inputTitle,
+                            content: inputContent == "" ? contentPlaceholderText : inputContent,
+                            image: sourceImage)
             
             InsightHistoryManager.shared.addInsightSourceItem(source: "사진")
             
@@ -77,18 +82,22 @@ class AddInsightViewModel: ObservableObject {
                 return
             }
             
-            insight = .init(title: inputTitle, content: inputContent,
+            insight = .init(title: inputTitle == "" ? titlePlaceholderText : inputTitle,
+                            content: inputContent == "" ? contentPlaceholderText : inputContent,
                             url: url, thumbnailImage: sourceImage, urlTitle: sourceTitle)
             
             InsightHistoryManager.shared.addInsightSourceItem(source: sourceName)
             
         case .quote:
-            insight = .init(title: inputTitle, content: inputContent, quote: sourceQuote)
+            insight = .init(title: inputTitle == "" ? titlePlaceholderText : inputTitle,
+                            content: inputContent == "" ? contentPlaceholderText : inputContent,
+                            quote: sourceQuote)
             
             InsightHistoryManager.shared.addInsightSourceItem(source: "인용")
             
         case .brain:
-            insight = .init(title: inputTitle, content: inputContent)
+            insight = .init(title: inputTitle == "" ? titlePlaceholderText : inputTitle,
+                            content: inputContent == "" ? contentPlaceholderText : inputContent)
             
             InsightHistoryManager.shared.addInsightSourceItem(source: "생각")
         }

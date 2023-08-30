@@ -29,6 +29,9 @@ class UpdateInsightViewModel: ObservableObject {
     @Published var isSourceContentLoaded = false
     @Published var isFetchingData = false
     
+    let titlePlaceholderText = PlaceholderList.titlePlaceholder.randomElement() ?? "제목"
+    let contentPlaceholderText = PlaceholderList.contentPlaceholder.randomElement() ?? "내용"
+    
     init(insight: InsightData) {
         self.insightData = insight
         
@@ -97,27 +100,23 @@ class UpdateInsightViewModel: ObservableObject {
     
     func tapSaveButton() {
         
+        insightData.title = inputTitle == "" ? titlePlaceholderText : inputTitle
+        insightData.content = inputContent == "" ? contentPlaceholderText : inputContent
+        
         switch(sourceType) {
         case .image:
-            insightData.title = inputTitle
-            insightData.content = inputContent
             insightData.image = sourceImage?.pngData()
             
         case .url:
-            insightData.title = inputTitle
-            insightData.content = inputContent
             insightData.urlString = sourceUrl
             insightData.urlTitle = sourceTitle
             insightData.image = sourceImage?.pngData()
             
         case .quote:
-            insightData.title = inputTitle
-            insightData.content = inputContent
             insightData.quote = sourceQuote
             
         case .brain:
-            insightData.title = inputTitle
-            insightData.content = inputContent
+            let _ = 0
         }
         
         CoreDataManager.shared.updateInsight()
