@@ -137,7 +137,6 @@ struct InsightPageView: View {
             viewModel.image = UIImage(data: newValue!)
         })
         .environmentObject(viewModel)
-        
     }
 }
 

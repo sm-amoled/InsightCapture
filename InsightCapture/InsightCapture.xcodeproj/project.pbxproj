@@ -39,6 +39,8 @@
 		3480CEA629DC02EA00649B6D /* SwiftUIImageViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 3480CEA529DC02EA00649B6D /* SwiftUIImageViewer */; };
 		34AFC04A2A96E4B800BA1AE7 /* UpdateInsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC0492A96E4B800BA1AE7 /* UpdateInsightView.swift */; };
 		34AFC04C2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC04B2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift */; };
+		34AFC04E2A9EF13900BA1AE7 /* PlaceholderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC04D2A9EF13900BA1AE7 /* PlaceholderList.swift */; };
+		34AFC04F2A9EF13900BA1AE7 /* PlaceholderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AFC04D2A9EF13900BA1AE7 /* PlaceholderList.swift */; };
 		34C8FD9529D1DEBE003401CE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9429D1DEBE003401CE /* Color+.swift */; };
 		34C8FD9729D26CA7003401CE /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9629D26CA7003401CE /* Date+.swift */; };
 		34C8FD9B29D2C43B003401CE /* InsightListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8FD9A29D2C43B003401CE /* InsightListCardView.swift */; };
@@ -113,6 +115,7 @@
 		3480CE9D29DAE55B00649B6D /* ImageSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSourceView.swift; sourceTree = "<group>"; };
 		34AFC0492A96E4B800BA1AE7 /* UpdateInsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsightView.swift; sourceTree = "<group>"; };
 		34AFC04B2A96E4C200BA1AE7 /* UpdateInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInsightViewModel.swift; sourceTree = "<group>"; };
+		34AFC04D2A9EF13900BA1AE7 /* PlaceholderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderList.swift; sourceTree = "<group>"; };
 		34C8FD9429D1DEBE003401CE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		34C8FD9629D26CA7003401CE /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		34C8FD9A29D2C43B003401CE /* InsightListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightListCardView.swift; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 			children = (
 				34C8FDA429D30CE3003401CE /* AddInsightView.swift */,
 				346E9F302A78D7C900FD61DD /* AddInsightViewModel.swift */,
+				34AFC04D2A9EF13900BA1AE7 /* PlaceholderList.swift */,
 			);
 			path = AddInsightView;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34624F5129CCA3F400518FB4 /* InsightData+CoreDataProperties.swift in Sources */,
+				34AFC04F2A9EF13900BA1AE7 /* PlaceholderList.swift in Sources */,
 				3480CE9C29DACE8C00649B6D /* Color+.swift in Sources */,
 				34624F5029CCA3F000518FB4 /* InsightData+CoreDataClass.swift in Sources */,
 				34624F3029CAE57D00518FB4 /* ShareViewController.swift in Sources */,
@@ -489,6 +494,7 @@
 				34D6CF382A9239FF0002663E /* AnnouncementListView.swift in Sources */,
 				34624F5329CEDD9E00518FB4 /* Insight.swift in Sources */,
 				34624F4029CB300A00518FB4 /* UIColor+.swift in Sources */,
+				34AFC04E2A9EF13900BA1AE7 /* PlaceholderList.swift in Sources */,
 				3480CE9E29DAE55B00649B6D /* ImageSourceView.swift in Sources */,
 				34C8FD9F29D2C56A003401CE /* InsightListCardViewModel.swift in Sources */,
 			);
